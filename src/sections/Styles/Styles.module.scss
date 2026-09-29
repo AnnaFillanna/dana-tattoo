@@ -1,0 +1,257 @@
+.styles {
+  padding: 120px 7vw 110px;
+  background: #484e43;
+  border-top: 1px solid #81785f;
+  color: #eee8da;
+}
+
+.heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: 40px;
+  margin-bottom: 64px;
+
+  > span {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #d2c6a7;
+  }
+
+  h2 {
+    margin: 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(56px, 6vw, 94px);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.035em;
+  }
+}
+
+/* Асимметричная сетка */
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.8fr 1.05fr;
+  grid-template-rows: 280px 120px 330px;
+  gap: 26px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+
+  color: #eee8da;
+  text-decoration: none;
+
+  &:hover {
+    .imagePlaceholder {
+      transform: scale(0.985);
+    }
+
+  }
+}
+
+/* Большая вертикальная */
+
+.realismus {
+  grid-column: 1;
+  grid-row: 1 / 3;
+}
+
+/* Узкая вертикальная */
+
+.fineLine {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+/* Широкая */
+
+.coverUp {
+  grid-column: 3;
+  grid-row: 1 / 3;
+}
+
+/* Низкая вертикальная */
+
+.blackGrey {
+  grid-column: 1 / 2;
+  grid-row: 3;
+}
+
+/* Большая широкая */
+
+.color {
+  grid-column: 2 / 4;
+  grid-row: 3;
+}
+
+.imagePlaceholder {
+  flex: 1;
+  min-height: 0;
+
+  position: relative;
+  background: linear-gradient(145deg, #343e34, #26332c);
+  border: 1px solid rgb(188 174 136 / 55%);
+
+
+  overflow: hidden;
+
+  transition: transform 0.45s ease;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding-top: 16px;
+
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+
+/* Piercing — намеренно второстепенный */
+
+.piercingRow {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 20px;
+  margin-top: 48px;
+}
+
+.piercingText {
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #d2c6a7;
+}
+
+.piercingButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 120px;
+  height: 38px;
+  padding: 0 24px;
+
+  border: 1px solid #d2c6a7;
+  background: transparent;
+
+  color: #eee8da;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease;
+
+  &:hover {
+    background: #d2c6a7;
+    color: #303e35;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #e2cca0;
+    outline-offset: 5px;
+  }
+}
+
+/* Tablet */
+
+@media (max-width: 1000px) {
+  .styles {
+    padding: 90px 5vw;
+  }
+
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 420px 300px 420px;
+  }
+
+  .realismus {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .fineLine {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .coverUp {
+    grid-column: 1 / 3;
+    grid-row: 2;
+  }
+
+  .blackGrey {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .color {
+    grid-column: 2;
+    grid-row: 3;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 650px) {
+  .styles {
+    padding: 72px 20px;
+  }
+
+  .heading {
+    display: block;
+    margin-bottom: 42px;
+
+    > span {
+      display: block;
+      margin-bottom: 18px;
+    }
+
+    h2 {
+      font-size: 52px;
+    }
+  }
+
+  .grid {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  .imagePlaceholder {
+    height: 430px;
+    flex: none;
+  }
+
+  .coverUp .imagePlaceholder,
+  .color .imagePlaceholder {
+    height: 300px;
+  }
+
+ .piercingRow {
+  margin-top: 40px;
+  gap: 14px;
+}
+} .card:focus-visible {
+  outline: 2px solid #e2cca0;
+  outline-offset: 6px;
+}
+.heading { padding-bottom: 28px; border-bottom: 1px solid rgb(210 198 167 / 35%); }
+@media (prefers-reduced-motion: reduce) {
+  .imagePlaceholder { transition: none; }
+}

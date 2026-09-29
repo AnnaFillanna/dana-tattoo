@@ -1,0 +1,21 @@
+@use './fonts';
+@use './variables';
+@use './reset';
+
+body {
+  min-height: 100vh;
+
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+
+  font-weight: 400;
+  line-height: 1.5;
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+#root {
+  min-height: 100vh;
+}
