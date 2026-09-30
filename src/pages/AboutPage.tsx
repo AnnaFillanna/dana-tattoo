@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react';
 import styles from './AboutPage.module.scss';
 import portrait from '../assets/images/dana-portrait.jpg';
 
@@ -33,7 +34,54 @@ function ValueIcon({ name }: { name: string }) {
   </svg>;
 }
 
-export const AboutPage = () => (
+export const AboutPage = () => {
+  const carousel = useRef<HTMLUListElement>(null);
+  const [paused, setPaused] = useState(false);
+  useEffect(() => {
+    const list = carousel.current;
+    if (!list) return;
+    const mobile = window.matchMedia('(max-width: 600px)');
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let frame = 0;
+    let touching = false;
+    let resumeAt = 0;
+    const stop = () => { touching = true; cancelAnimationFrame(frame); list.style.scrollSnapType = ''; };
+    const resume = () => { touching = false; resumeAt = Date.now() + 6000; };
+    list.addEventListener('pointerdown', stop);
+    window.addEventListener('pointerup', resume);
+    window.addEventListener('pointercancel', resume);
+    list.addEventListener('focusin', stop);
+    list.addEventListener('focusout', resume);
+    const timer = window.setInterval(() => {
+      const rect = list.getBoundingClientRect();
+      if (paused || touching || Date.now() < resumeAt || !mobile.matches || reduced.matches || document.hidden || rect.bottom < 0 || rect.top > innerHeight) return;
+      const step = (list.firstElementChild as HTMLElement).getBoundingClientRect().width + 14;
+      const max = list.scrollWidth - list.clientWidth;
+      const start = list.scrollLeft;
+      const target = start >= max - 4 ? 0 : Math.min(max, (Math.round(start / step) + 1) * step);
+      const begin = performance.now();
+      list.style.scrollSnapType = 'none';
+      const animate = (now: number) => {
+        const progress = Math.min(1, (now - begin) / 1800);
+        const ease = (1 - Math.cos(Math.PI * progress)) / 2;
+        list.scrollLeft = start + (target - start) * ease;
+        if (progress < 1) frame = requestAnimationFrame(animate);
+        else list.style.scrollSnapType = '';
+      };
+      frame = requestAnimationFrame(animate);
+    }, 6000);
+    return () => {
+      clearInterval(timer);
+      cancelAnimationFrame(frame);
+      list.style.scrollSnapType = '';
+      list.removeEventListener('pointerdown', stop);
+      window.removeEventListener('pointerup', resume);
+      window.removeEventListener('pointercancel', resume);
+      list.removeEventListener('focusin', stop);
+      list.removeEventListener('focusout', resume);
+    };
+  }, [paused]);
+  return (
   <main className={styles.page}>
     <div className={styles.container}>
       <header className={styles.hero}>
@@ -60,7 +108,8 @@ export const AboutPage = () => (
           <p className={styles.copy}>Meine Schwerpunkte sind Realismus, Mini-Tattoo/Fine Line, Grafik, Cover-up und Piercing. Dabei stimme ich die Gestaltung individuell auf deine Wünsche ab.</p>
         </section>
       </div>
-      <ul className={styles.specialties} aria-label="Stilrichtungen und Leistungen">
+      <div className={styles.carouselControls}><p>Alle Stilrichtungen · Zum Entdecken wischen</p><button type="button" onClick={() => setPaused(!paused)} aria-pressed={paused}>{paused ? 'Fortsetzen' : 'Pause'}</button></div>
+      <ul ref={carousel} className={styles.specialties} aria-label="Stilrichtungen und Leistungen" tabIndex={0}>
         {specialties.map(item => <li key={item.label}><div className={item.label === 'Piercing' ? styles.piercingFrame : item.label === 'Cover-up' ? styles.coverFrame : undefined}><img className={styles.stylePhoto} src={item.image} alt={item.alt} loading="lazy" /></div><div className={styles.styleCaption}><span className={styles.styleName}>{item.label}</span><span className={styles.styleDetail}>{item.detail}</span></div></li>)}
       </ul>
 
@@ -82,3 +131,4 @@ export const AboutPage = () => (
     </div>
   </main>
 );
+};
