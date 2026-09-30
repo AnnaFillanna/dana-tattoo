@@ -43,7 +43,7 @@ export const AboutPage = () => (
         </figure>
         <div className={styles.introduction}>
           <p className={styles.eyebrow}>Über mich</p>
-          <h1>Die Künstlerin<br />hinter deinem<br /><em>Tattoo.</em></h1>
+          <h1>Die Künstlerin<br />hinter deinem<br /><em>Tattoo</em></h1>
           <p className={styles.copy}>Ich bin Tätowiererin und Piercerin. Seit über 10 Jahren bin ich in diesem Beruf tätig und habe in dieser Zeit mit verschiedensten Stilen und individuellen Kundenwünschen gearbeitet.</p>
         </div>
       </header>

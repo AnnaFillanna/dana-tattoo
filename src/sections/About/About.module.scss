@@ -15,6 +15,7 @@
 }
 
 .portrait {
+  margin: 0;
   overflow: hidden;
 
   img {
@@ -25,7 +26,7 @@
   }
 }
 
-  figcaption {
+  .portrait figcaption {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
@@ -86,7 +87,7 @@
   .layout { grid-template-columns: 1fr; gap: 40px; }
   .portrait { max-width: 440px; width: 100%; }
 
-  .content h2 { font-size: clamp(44px, 9vw, 64px); }
+  .content h2 { font-size: clamp(38px, 9vw, 64px); }
   .eyebrow { margin-bottom: 20px; }
   .divider { margin-block: 26px; }
 }

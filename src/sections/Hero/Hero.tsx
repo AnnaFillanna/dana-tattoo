@@ -40,7 +40,7 @@ export const Hero = () => {
           Individuelle Tattoos mit Bedeutung,<br />Präzision und Leidenschaft.
         </p>
         <div className={styles.actions}>
-          <a className={styles.button} href="/contact">
+          <a className={styles.button} href="/kontakt">
             Jetzt Termin buchen
           </a>
           <a className={styles.explore} href="/styles">Styles entdecken</a>

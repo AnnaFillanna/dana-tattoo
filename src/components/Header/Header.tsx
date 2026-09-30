@@ -4,12 +4,12 @@ import logo from "../../assets/images/logo.png";
 
 const navItems = [
   { label: "Home", href: "/" },
-  { label: "Über mich", href: "/about" },
+  { label: "Über mich", href: "/ueber-mich" },
   { label: "Styles", href: "/styles" },
   { label: "Gallery", href: "/gallery" },
-  { label: "Preise", href: "/prices" },
+  { label: "Preise", href: "/preise" },
   { label: "FAQ", href: "/faq" },
-  { label: "Kontakt", href: "/contact" },
+  { label: "Kontakt", href: "/kontakt" },
 ];
 
 export const Header = () => {

@@ -2,12 +2,12 @@ import styles from './Footer.module.scss';
 import logo from '../../assets/images/logo.png';
 
 const links = [
-  { label: 'Über mich', href: '/about' },
+  { label: 'Über mich', href: '/ueber-mich' },
   { label: 'Styles', href: '/styles' },
   { label: 'Gallery', href: '/gallery' },
-  { label: 'Preise', href: '/prices' },
+  { label: 'Preise', href: '/preise' },
   { label: 'FAQ', href: '/faq' },
-  { label: 'Kontakt', href: '/contact' },
+  { label: 'Kontakt', href: '/kontakt' },
 ];
 
 const whatsappUrl = `https://wa.me/4915731414097?text=${encodeURIComponent('Hallo Dana! Ich möchte meine Tattoo-Idee mit dir besprechen.')}`;
