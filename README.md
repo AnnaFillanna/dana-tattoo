@@ -1,75 +1,49 @@
-# React + TypeScript + Vite
+ # Dana Tattoo Studio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Eine moderne und responsive Website für das **Dana Tattoo Studio** in Andernach.
 
-Currently, two official plugins are available:
+🌐 **Live Website:** [tattoodana.de](https://tattoodana.de)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Die Website wurde als reales Kundenprojekt konzipiert und entwickelt. Im Mittelpunkt stehen eine individuelle visuelle Gestaltung, eine übersichtliche Navigation und eine moderne Präsentation der Arbeiten und Leistungen des Studios.
 
-## React Compiler
+✨ Funktionen
+	●	Responsive Design für Desktop, Tablet und Smartphone
+	●	Mehrseitige Navigation mit React Router
+	●	Übersicht der Tattoo-Stile und Leistungen
+	●	Tattoo-Galerie
+	●	„Über mich“-Seite
+	●	Preisübersicht
+	●	FAQ-Bereich
+	●	Kontaktbereich
+	●	WhatsApp-Integration für Beratung und Terminanfragen
+	●	Tattoo- und Piercing-Angebot
+	●	Individuelles Design passend zur Identität des Studios
+🛠 Tech Stack
+	●	React
+	●	TypeScript
+	●	Vite
+	●	SCSS / SCSS Modules
+	●	React Router
+	●	ESLint
+	●	Prettier
+	●	Husky
+	●	lint-staged
+	●	Commitlint
+🎨 Design
+Das Design kombiniert dunkle Grüntöne mit warmen goldenen Akzenten und eleganter Typografie.
+Ziel war es, eine hochwertige und individuelle Atmosphäre zu schaffen, die zum Charakter des Tattoo-Studios passt.
+Schriftarten:
+	●	Cormorant Garamond
+	●	Montserrat
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Expanding the ESLint configuration
+📍 Studio
+Dana Tattoo StudioAndernach, Deutschland
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+📌 Projektstatus
+Das Projekt befindet sich aktuell in der Entwicklung.
+Weitere Inhalte, Studiofotos und finale Details werden schrittweise integriert.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
-
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
+👩‍💻 Entwicklung
+Konzipiert und entwickelt von Anna Filippi.
+Umgesetzt mit React und TypeScript als reales Kundenprojekt.

@@ -36,25 +36,22 @@ function ValueIcon({ name }: { name: string }) {
 
 export const AboutPage = () => {
   const carousel = useRef<HTMLUListElement>(null);
-  const [paused, setPaused] = useState(false);
+  const [paused, setPaused] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   useEffect(() => {
     const list = carousel.current;
     if (!list) return;
     const mobile = window.matchMedia('(max-width: 600px)');
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
     let frame = 0;
     let touching = false;
     let resumeAt = 0;
     const stop = () => { touching = true; cancelAnimationFrame(frame); list.style.scrollSnapType = ''; };
-    const resume = () => { touching = false; resumeAt = Date.now() + 6000; };
+    const resume = () => { if (!touching) return; touching = false; resumeAt = Date.now() + 3000; };
     list.addEventListener('pointerdown', stop);
     window.addEventListener('pointerup', resume);
     window.addEventListener('pointercancel', resume);
-    list.addEventListener('focusin', stop);
-    list.addEventListener('focusout', resume);
     const timer = window.setInterval(() => {
       const rect = list.getBoundingClientRect();
-      if (paused || touching || Date.now() < resumeAt || !mobile.matches || reduced.matches || document.hidden || rect.bottom < 0 || rect.top > innerHeight) return;
+      if (paused || touching || Date.now() < resumeAt || !mobile.matches || document.hidden || rect.bottom < 0 || rect.top > innerHeight) return;
       const step = (list.firstElementChild as HTMLElement).getBoundingClientRect().width + 14;
       const max = list.scrollWidth - list.clientWidth;
       const start = list.scrollLeft;
@@ -69,7 +66,7 @@ export const AboutPage = () => {
         else list.style.scrollSnapType = '';
       };
       frame = requestAnimationFrame(animate);
-    }, 6000);
+    }, 4000);
     return () => {
       clearInterval(timer);
       cancelAnimationFrame(frame);
@@ -77,8 +74,6 @@ export const AboutPage = () => {
       list.removeEventListener('pointerdown', stop);
       window.removeEventListener('pointerup', resume);
       window.removeEventListener('pointercancel', resume);
-      list.removeEventListener('focusin', stop);
-      list.removeEventListener('focusout', resume);
     };
   }, [paused]);
   return (
