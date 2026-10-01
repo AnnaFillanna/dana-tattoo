@@ -3,13 +3,11 @@ import styles from './PiercingPage.module.scss';
 import septumOne from '../assets/images/piercing-septum-1.jpg';
 import septumTwo from '../assets/images/piercing-septum-2.jpg';
 import septumThree from '../assets/images/piercing-septum-3.jpg';
-import tongue from '../assets/images/piercing-tongue.jpg';
 
 const works = [
   { image: septumOne, title: 'Septum', alt: 'Septum-Piercing mit Kugelverschluss – Porträt und Detailaufnahme' },
   { image: septumTwo, title: 'Septum', alt: 'Septum-Piercing mit spitzen Enden – Porträt und Detailaufnahme' },
   { image: septumThree, title: 'Septum', alt: 'Septum-Piercing – Frontalansicht und Nahaufnahme des Schmucks' },
-  { image: tongue, title: 'Zungenpiercing', alt: 'Zungenpiercing – Porträt und Detailaufnahme' },
 ];
 
 export const PiercingPage = () => (
