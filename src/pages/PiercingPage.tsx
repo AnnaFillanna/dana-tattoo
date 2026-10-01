@@ -3,15 +3,32 @@ import styles from './PiercingPage.module.scss';
 import septumOne from '../assets/images/piercing-septum-1.jpg';
 import septumTwo from '../assets/images/piercing-septum-2.jpg';
 import septumThree from '../assets/images/piercing-septum-3.jpg';
-import septumCollage from '../assets/images/piercing-septum-collage.jpg';
-import septumPortrait from '../assets/images/piercing-septum-portrait.jpg';
+
+import work1 from '../assets/images/piercing-gallery-1.jpg';
+import work2 from '../assets/images/piercing-gallery-2.jpg';
+import work3 from '../assets/images/piercing-gallery-3.jpg';
+import work4 from '../assets/images/piercing-gallery-4.jpg';
+import work5 from '../assets/images/piercing-gallery-5.jpg';
+import work6 from '../assets/images/piercing-gallery-6.jpg';
+import work7 from '../assets/images/piercing-gallery-7.jpg';
+import work8 from '../assets/images/piercing-gallery-8.jpg';
+import work9 from '../assets/images/piercing-gallery-9.jpg';
+import work10 from '../assets/images/piercing-gallery-10.jpg';
 
 const works = [
-  { image: septumOne, title: 'Septum', alt: 'Septum-Piercing mit Kugelverschluss – Porträt und Detailaufnahme' },
-  { image: septumTwo, title: 'Septum', alt: 'Septum-Piercing mit spitzen Enden – Porträt und Detailaufnahme' },
-  { image: septumThree, title: 'Septum', alt: 'Septum-Piercing – Frontalansicht und Nahaufnahme des Schmucks' },
-  { image: septumCollage, title: 'Septum', alt: 'Septum-Piercing – ursprüngliche Collage mit Porträt und Detail', width: 660, height: 1280 },
-  { image: septumPortrait, title: 'Septum', alt: 'Septum-Piercing – einzelne Nahaufnahme des Gesichts', width: 777, height: 894 },
+  { image: septumOne, alt: 'Septum-Piercing mit Kugelverschluss – Porträt und Detailaufnahme' },
+  { image: septumTwo, alt: 'Septum-Piercing mit spitzen Enden – Porträt und Detailaufnahme' },
+  { image: septumThree, alt: 'Septum-Piercing – Frontalansicht und Nahaufnahme des Schmucks' },
+  { image: work1, alt: 'Septum-Piercing – Porträt und Detailaufnahme' },
+  { image: work2, alt: 'Conch-Piercing – Porträt und Detailaufnahme' },
+  { image: work3, alt: 'Smile-Piercing – Porträt und Detailaufnahme' },
+  { image: work4, alt: 'Nostril-Piercing – Porträt und Detailaufnahme' },
+  { image: work5, alt: 'Helix-Piercing – Porträt und Detailaufnahme' },
+  { image: work6, alt: 'Helix-Piercing – Porträt und Detailaufnahme' },
+  { image: work7, alt: 'Septum-Piercing – Porträt und Detailaufnahme' },
+  { image: work8, alt: 'Monroe-Piercing – Porträt und Detailaufnahme' },
+  { image: work9, alt: 'Septum-Piercing – Porträt und Detailaufnahme' },
+  { image: work10, alt: 'Smile-Piercing – Porträt und Detailaufnahme' },
 ];
 
 export const PiercingPage = () => (
@@ -25,8 +42,7 @@ export const PiercingPage = () => (
       <section className={styles.gallery} aria-label="Piercing-Arbeiten von Dana">
         {works.map((work, index) => (
           <figure className={styles.work} key={work.image}>
-            <img src={work.image} alt={work.alt} width={work.width ?? 853} height={work.height ?? 1280} loading={index === 0 ? 'eager' : 'lazy'} />
-            <figcaption>{work.title}<span>0{index + 1}</span></figcaption>
+            <img src={work.image} alt={work.alt} width="853" height="1280" loading={index === 0 ? 'eager' : 'lazy'} />
           </figure>
         ))}
       </section>
