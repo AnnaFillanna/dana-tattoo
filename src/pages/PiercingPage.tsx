@@ -15,6 +15,17 @@ import work8 from '../assets/images/piercing-gallery-8.jpg';
 import work9 from '../assets/images/piercing-gallery-9.jpg';
 import work10 from '../assets/images/piercing-gallery-10.jpg';
 
+import work11 from '../assets/images/piercing-gallery-11.jpg';
+import work12 from '../assets/images/piercing-gallery-12.jpg';
+import work13 from '../assets/images/piercing-gallery-13.jpg';
+import work14 from '../assets/images/piercing-gallery-14.jpg';
+import work15 from '../assets/images/piercing-gallery-15.jpg';
+import work16 from '../assets/images/piercing-gallery-16.jpg';
+import work17 from '../assets/images/piercing-gallery-17.jpg';
+import work18 from '../assets/images/piercing-gallery-18.jpg';
+import work19 from '../assets/images/piercing-gallery-19.jpg';
+import work20 from '../assets/images/piercing-gallery-20.jpg';
+
 const works = [
   { image: septumOne, alt: 'Septum-Piercing mit Kugelverschluss – Porträt und Detailaufnahme' },
   { image: septumTwo, alt: 'Septum-Piercing mit spitzen Enden – Porträt und Detailaufnahme' },
@@ -29,6 +40,16 @@ const works = [
   { image: work8, alt: 'Monroe-Piercing – Porträt und Detailaufnahme' },
   { image: work9, alt: 'Septum-Piercing – Porträt und Detailaufnahme' },
   { image: work10, alt: 'Smile-Piercing – Porträt und Detailaufnahme' },
+  { image: work11, alt: 'Augenbrauenpiercing – Porträt und Detailaufnahme' },
+  { image: work12, alt: 'Zungenpiercing – Porträt und Detailaufnahme' },
+  { image: work13, alt: 'Nostril-Piercing – Porträt und Detailaufnahme' },
+  { image: work14, alt: 'Smile-Piercing – Porträt und Detailaufnahme' },
+  { image: work15, alt: 'Nostril-Piercing – Porträt und Detailaufnahme' },
+  { image: work16, alt: 'Ohrläppchen-Piercing – Porträt und Detailaufnahme' },
+  { image: work17, alt: 'Zungenpiercing – Porträt und Detailaufnahme' },
+  { image: work18, alt: 'Helix-Piercing – Porträt und Detailaufnahme' },
+  { image: work19, alt: 'Industrial-Piercing – Porträt und Detailaufnahme' },
+  { image: work20, alt: 'Zungenpiercing – Porträt und Detailaufnahme' },
 ];
 
 export const PiercingPage = () => (
