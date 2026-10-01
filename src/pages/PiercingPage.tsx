@@ -3,11 +3,15 @@ import styles from './PiercingPage.module.scss';
 import septumOne from '../assets/images/piercing-septum-1.jpg';
 import septumTwo from '../assets/images/piercing-septum-2.jpg';
 import septumThree from '../assets/images/piercing-septum-3.jpg';
+import septumCollage from '../assets/images/piercing-septum-collage.jpg';
+import septumPortrait from '../assets/images/piercing-septum-portrait.jpg';
 
 const works = [
   { image: septumOne, title: 'Septum', alt: 'Septum-Piercing mit Kugelverschluss – Porträt und Detailaufnahme' },
   { image: septumTwo, title: 'Septum', alt: 'Septum-Piercing mit spitzen Enden – Porträt und Detailaufnahme' },
   { image: septumThree, title: 'Septum', alt: 'Septum-Piercing – Frontalansicht und Nahaufnahme des Schmucks' },
+  { image: septumCollage, title: 'Septum', alt: 'Septum-Piercing – ursprüngliche Collage mit Porträt und Detail', width: 660, height: 1280 },
+  { image: septumPortrait, title: 'Septum', alt: 'Septum-Piercing – einzelne Nahaufnahme des Gesichts', width: 777, height: 894 },
 ];
 
 export const PiercingPage = () => (
@@ -21,7 +25,7 @@ export const PiercingPage = () => (
       <section className={styles.gallery} aria-label="Piercing-Arbeiten von Dana">
         {works.map((work, index) => (
           <figure className={styles.work} key={work.image}>
-            <img src={work.image} alt={work.alt} width="853" height="1280" loading={index === 0 ? 'eager' : 'lazy'} />
+            <img src={work.image} alt={work.alt} width={work.width ?? 853} height={work.height ?? 1280} loading={index === 0 ? 'eager' : 'lazy'} />
             <figcaption>{work.title}<span>0{index + 1}</span></figcaption>
           </figure>
         ))}
