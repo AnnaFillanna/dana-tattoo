@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styles from './About.module.scss';
 import danaPortrait from '../../assets/images/dana-seated.jpg';
 
@@ -17,7 +18,7 @@ export const About = ({ portraitSrc = danaPortrait }: AboutProps) => (
           </div>
         )}
         </div>
-        <figcaption><span>Dana</span><span>Tattoo Artist</span></figcaption>
+        <figcaption>Tattoo Artist</figcaption>
       </figure>
 
       <div className={styles.content}>
@@ -31,7 +32,7 @@ export const About = ({ portraitSrc = danaPortrait }: AboutProps) => (
           ein persönliches Motiv entwickeln — mit einem offenen Ohr für
           deine Wünsche und Liebe zum Detail.
         </p>
-        <a className={styles.link} href="/ueber-mich">Mehr über mich</a>
+        <Link className={styles.link} to="/ueber-mich">Mehr über mich<span aria-hidden="true">↗</span></Link>
       </div>
     </div>
   </section>

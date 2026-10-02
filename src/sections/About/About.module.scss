@@ -26,17 +26,14 @@
   }
 }
 
-  .portrait figcaption {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 16px;
-    padding-top: 16px;
-    color: #d2c6a7;
-    span:first-child { font-family: var(--font-heading); font-size: 30px; font-style: normal; }
-    span:last-child { font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; }
-  }
-
+.portrait figcaption {
+  padding-top: 16px;
+  color: #d2c6a7;
+  text-align: left;
+  font-size: 9px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
 
 .placeholder {
   position: relative;
@@ -61,19 +58,33 @@
 .intro { font-family: var(--font-heading); font-size: clamp(25px, 2.3vw, 32px); line-height: 1.2; }
 .description { max-width: 410px; margin-top: 20px; font-size: 13px; line-height: 1.9; color: #d4d7ca; }
 .link {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
-  gap: 48px;
-  min-height: 48px;
+  gap: 36px;
+  min-height: 54px;
+  max-width: 100%;
   margin-top: 32px;
-  border-bottom: 1px solid #d2c6a7;
-  font-size: 10px;
-  letter-spacing: 0.14em;
+  padding: 14px 24px;
+  border: 1px solid #d2c6a7;
+  color: #f5efdf;
+  font-size: 11px;
+  letter-spacing: .12em;
   text-transform: uppercase;
-  span { font-size: 20px; transition: transform 0.2s ease; }
-  &:hover span { transform: translate(3px, -3px); }
-  &:focus-visible { outline: 2px solid var(--color-gold-light); outline-offset: 6px; }
+  text-decoration: none;
+  transition: color .3s ease, transform .3s ease, box-shadow .3s ease;
+  &::before { content: ''; position: absolute; inset: 0; z-index: -1; background: #d2c6a7; transform: translateX(-101%); transition: transform .35s ease; }
+  span { font-size: 22px; line-height: 1; transition: transform .3s ease; }
+  &:focus-visible { outline: 2px solid #d2c6a7; outline-offset: 5px; }
+  &:active { transform: translateY(0); }
+}
+@media (hover: hover) {
+  .link:hover { color: #20382f; transform: translateY(-3px); box-shadow: 0 8px 20px #0002; }
+  .link:hover::before { transform: translateX(0); }
+  .link:hover span { transform: translate(3px, -3px); }
 }
 
 @media (max-width: 1000px) {
@@ -91,7 +102,7 @@
   .eyebrow { margin-bottom: 20px; }
   .divider { margin-block: 26px; }
 }
-@media (prefers-reduced-motion: reduce) { .link span { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .link, .link::before, .link span { transition: none; } .link:hover, .link:hover span { transform: none; } }
 
 .portraitWindow {
   position: relative;
