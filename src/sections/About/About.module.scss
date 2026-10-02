@@ -59,32 +59,29 @@
 .description { max-width: 410px; margin-top: 20px; font-size: 13px; line-height: 1.9; color: #d4d7ca; }
 .link {
   position: relative;
-  isolation: isolate;
-  overflow: hidden;
   display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 36px;
-  min-height: 54px;
+  gap: 24px;
+  min-height: 48px;
   max-width: 100%;
   margin-top: 32px;
-  padding: 14px 24px;
-  border: 1px solid #d2c6a7;
+  padding: 10px 8px 10px 0;
   color: #f5efdf;
   font-size: 11px;
   letter-spacing: .12em;
   text-transform: uppercase;
   text-decoration: none;
-  transition: color .3s ease, transform .3s ease, box-shadow .3s ease;
-  &::before { content: ''; position: absolute; inset: 0; z-index: -1; background: #d2c6a7; transform: translateX(-101%); transition: transform .35s ease; }
+  transition: color .3s ease;
+  &::before { content: ''; position: absolute; left: 0; right: 0; bottom: 4px; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: center; transition: transform .35s ease; }
   span { font-size: 22px; line-height: 1; transition: transform .3s ease; }
-  &:focus-visible { outline: 2px solid #d2c6a7; outline-offset: 5px; }
-  &:active { transform: translateY(0); }
+  &:focus-visible { color: #d2c6a7; outline: 2px solid #d2c6a7; outline-offset: 5px; }
+  &:focus-visible::before { transform: scaleX(1); }
+  &:active { color: #d2c6a7; }
 }
 @media (hover: hover) {
-  .link:hover { color: #20382f; transform: translateY(-3px); box-shadow: 0 8px 20px #0002; }
-  .link:hover::before { transform: translateX(0); }
-  .link:hover span { transform: translate(3px, -3px); }
+  .link:hover { color: #d2c6a7; }
+  .link:hover::before { transform: scaleX(1); }
+  .link:hover span { transform: translateX(6px); }
 }
 
 @media (max-width: 1000px) {

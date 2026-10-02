@@ -32,7 +32,7 @@ export const About = ({ portraitSrc = danaPortrait }: AboutProps) => (
           ein persönliches Motiv entwickeln — mit einem offenen Ohr für
           deine Wünsche und Liebe zum Detail.
         </p>
-        <Link className={styles.link} to="/ueber-mich">Mehr über mich<span aria-hidden="true">↗</span></Link>
+        <Link className={styles.link} to="/ueber-mich">Mehr über mich<span aria-hidden="true">→</span></Link>
       </div>
     </div>
   </section>
