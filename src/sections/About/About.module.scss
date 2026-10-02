@@ -61,19 +61,17 @@
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 24px;
   min-height: 48px;
   max-width: 100%;
   margin-top: 32px;
-  padding: 10px 8px 10px 0;
+  padding: 10px 0;
   color: #f5efdf;
   font-size: 11px;
   letter-spacing: .12em;
   text-transform: uppercase;
   text-decoration: none;
   transition: color .3s ease;
-  &::before { content: ''; position: absolute; left: 0; right: 0; bottom: 4px; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: center; transition: transform .35s ease; }
-  span { font-size: 22px; line-height: 1; transition: transform .3s ease; }
+  &::before { content: ''; position: absolute; left: 0; right: 0; bottom: 4px; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: left center; transition: transform 1.1s ease-in-out; }
   &:focus-visible { color: #d2c6a7; outline: 2px solid #d2c6a7; outline-offset: 5px; }
   &:focus-visible::before { transform: scaleX(1); }
   &:active { color: #d2c6a7; }
@@ -81,7 +79,6 @@
 @media (hover: hover) {
   .link:hover { color: #d2c6a7; }
   .link:hover::before { transform: scaleX(1); }
-  .link:hover span { transform: translateX(6px); }
 }
 
 @media (max-width: 1000px) {
@@ -99,7 +96,7 @@
   .eyebrow { margin-bottom: 20px; }
   .divider { margin-block: 26px; }
 }
-@media (prefers-reduced-motion: reduce) { .link, .link::before, .link span { transition: none; } .link:hover, .link:hover span { transform: none; } }
+@media (prefers-reduced-motion: reduce) { .link, .link::before { transition: none; } }
 
 .portraitWindow {
   position: relative;
