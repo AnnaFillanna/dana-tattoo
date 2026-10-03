@@ -3,6 +3,7 @@ import styles from './FaqPage.module.scss';
 const questions = [
   {
     title: 'Wie wird der Preis eines Tattoos berechnet?',
+    labels: ['Was den Preis bestimmt', 'Stil & Aufwand', 'Dein persönlicher Preis', 'Für eine erste Einschätzung'],
     paragraphs: [
       'Der Preis hängt vor allem von Größe, Komplexität und Körperstelle ab. Bei gleicher Größe kann der Arbeitsaufwand sehr unterschiedlich sein – zum Beispiel bei einem einfachen Motiv im Vergleich zu einem detaillierten Design mit vielen kleinen Elementen.',
       'Auch Stil, Anzahl der Details, Farbe und Arbeitszeit werden bei der Preisberechnung berücksichtigt.',
@@ -12,6 +13,7 @@ const questions = [
   },
   {
     title: 'Tattoo-Nachbesserung',
+    labels: ['Warum nachbessern?', 'Besonders beanspruchte Stellen', 'Der richtige Zeitpunkt', 'Ab zwei Monaten'],
     paragraphs: [
       'Manchmal kann sich nach der Heilung ein Teil des Pigments aus der Haut lösen. Das Ergebnis wird durch individuelle Hautbeschaffenheit, die Körperstelle, die Pflege und den Heilungsprozess beeinflusst.',
       'An bestimmten Stellen hält die Farbe schlechter, sodass eine Nachbesserung fast immer notwendig ist: Handflächen, Finger, Hände, Füße sowie andere Bereiche, die ständiger Reibung und Belastung ausgesetzt sind.',
@@ -21,6 +23,7 @@ const questions = [
   },
   {
     title: 'Körperstellen, die ich für Tattoos nicht empfehle',
+    labels: ['Meine Empfehlung', 'Haltbarkeit & Risiken', 'Gut abwägen'],
     paragraphs: [
       'Ich empfehle keine Tattoos an den Fingern, Handflächen, Händen und Füßen. An diesen Stellen ist die Haut ständig Reibung und Belastung ausgesetzt, wodurch das Pigment schlechter halten, schneller verblassen oder herausfallen kann.',
       'Solche Tattoos benötigen häufig regelmäßige Nachbesserungen. Wenn versucht wird, das Pigment durch tieferes Einbringen besser zu halten, erhöht sich das Risiko, dass die Linien verlaufen (Blowout).',
@@ -38,10 +41,16 @@ export const FaqPage = () => (
         <div className={styles.ornament} aria-hidden="true"><span>✧</span></div>
       </header>
       <div className={styles.questions}>
-        {questions.map(({ title, paragraphs }) => (
+        {questions.map(({ title, paragraphs, labels }) => (
           <details className={styles.item} key={title}>
             <summary><h2>{title}</h2><span className={styles.toggle} aria-hidden="true" /></summary>
-            <div className={styles.answer}>{paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}</div>
+            <div className={styles.answer}>{paragraphs.map((paragraph, index) => {
+              const sentenceEnd = paragraph.indexOf('. ') + 1;
+              return <section className={styles.answerSection} key={labels[index]}>
+                <h3>{labels[index]}</h3>
+                <p>{sentenceEnd > 0 ? <><strong>{paragraph.slice(0, sentenceEnd)}</strong>{' '}{paragraph.slice(sentenceEnd).trim()}</> : paragraph}</p>
+              </section>;
+            })}</div>
           </details>
         ))}
       </div>
