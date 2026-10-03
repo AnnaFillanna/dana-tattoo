@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import photo from '../assets/images/dana-studio-contact.jpg';
 import styles from './ContactPage.module.scss';
 
@@ -7,7 +6,6 @@ const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComp
 const whatsappUrl = `https://wa.me/4915731414097?text=${encodeURIComponent('Hallo Dana! Ich möchte einen Beratungstermin vereinbaren.')}`;
 
 export const ContactPage = () => {
-  const [showMap, setShowMap] = useState(false);
   return (
     <main className={styles.page}>
       <div className={styles.container}>
@@ -31,10 +29,11 @@ export const ContactPage = () => {
           </div>
         </section>
         <section className={styles.location} aria-labelledby="location-title">
-          <div className={styles.locationHeading}><h2 id="location-title">So findest du mich</h2><a href={mapsUrl} target="_blank" rel="noreferrer">Route planen ↗</a></div>
+          <div className={styles.locationHeading}><h2 id="location-title">So findest du mich</h2></div>
           <div className={styles.map}>
-            {showMap ? <iframe title="Standort Dana Tattoo Studio in Andernach" src={`https://maps.google.com/maps?q=${encodeURIComponent(address)}&output=embed`} loading="lazy" referrerPolicy="no-referrer-when-downgrade" allowFullScreen /> : <div className={styles.mapIntro}><span className={styles.pin} aria-hidden="true">◇</span><h3>Mitten in Andernach</h3><p>{address}</p><button className={styles.button} onClick={() => setShowMap(true)}>Google Maps laden</button><small>Beim Laden wird eine Verbindung zu Google hergestellt.</small></div>}
+            <iframe title="Standort Dana Tattoo Studio in Andernach" src={`https://maps.google.com/maps?q=${encodeURIComponent(address)}&z=16&output=embed`} referrerPolicy="no-referrer-when-downgrade" allowFullScreen />
           </div>
+          <a className={styles.route} href={mapsUrl} target="_blank" rel="noreferrer">Route planen ↗</a>
         </section>
       </div>
     </main>
