@@ -25,7 +25,7 @@ export const ContactPage = () => {
               <div><dt>Instagram</dt><dd><a href="https://www.instagram.com/tat_dana/" target="_blank" rel="noreferrer">@tat_dana</a></dd></div>
               <div><dt>Termine</dt><dd>Termine nach Vereinbarung</dd></div>
             </dl>
-            <a className={styles.button} href={whatsappUrl} target="_blank" rel="noreferrer">WhatsApp Beratung <span aria-hidden="true">↗</span></a>
+            <a className={styles.button} href={whatsappUrl} target="_blank" rel="noreferrer">WhatsApp Beratung</a>
           </div>
         </section>
         <section className={styles.location} aria-labelledby="location-title">
@@ -33,7 +33,7 @@ export const ContactPage = () => {
           <div className={styles.map}>
             <iframe title="Standort Dana Tattoo Studio in Andernach" src={`https://maps.google.com/maps?q=${encodeURIComponent(address)}&z=16&output=embed`} referrerPolicy="no-referrer-when-downgrade" allowFullScreen />
           </div>
-          <a className={styles.route} href={mapsUrl} target="_blank" rel="noreferrer">Route planen ↗</a>
+          <a className={styles.route} href={mapsUrl} target="_blank" rel="noreferrer">Route planen</a>
         </section>
       </div>
     </main>
