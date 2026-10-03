@@ -1,0 +1,23 @@
+.page { background: #e9e4d9; color: #20382f; min-height: calc(100svh - 96px); padding: 56px 24px 88px; }
+.container { max-width: 1050px; margin: 0 auto; }
+.heading { text-align: center; margin-bottom: 44px; }
+.heading > p { color: #806536; font-size: 10px; letter-spacing: .2em; text-transform: uppercase; }
+.heading h1 { font-family: var(--font-heading); font-size: clamp(42px, 6vw, 76px); font-weight: 400; line-height: 1.15; margin: 18px 0 22px; }
+.ornament { display: flex; align-items: center; justify-content: center; gap: 14px; color: #a58b56; }
+.ornament::before, .ornament::after { content: ''; width: 70px; height: 1px; background: #a58b5680; }
+.ornament span { font-size: 26px; }
+.questions { display: grid; gap: 16px; }
+.item { background: #eee9df; border: 1px solid #a58b5655; }
+.item summary { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 25px 30px; min-height: 88px; cursor: pointer; list-style: none; transition: background .25s ease; }
+.item summary::-webkit-details-marker { display: none; }
+.item summary h2 { font-family: var(--font-heading); font-size: clamp(24px, 2.6vw, 31px); line-height: 1.25; font-weight: 500; }
+.item summary:focus-visible { outline: 2px solid #806536; outline-offset: 4px; }
+.toggle { position: relative; flex: 0 0 22px; height: 22px; }
+.toggle::before, .toggle::after { content: ''; position: absolute; background: #927440; inset: 10px 0 auto; height: 1px; }
+.toggle::after { transform: rotate(90deg); transition: transform .25s ease; }
+.item[open] .toggle::after { transform: rotate(0); }
+.answer { padding: 0 76px 30px 30px; font-size: 14px; line-height: 1.85; color: #46534a; }
+.answer p + p { margin-top: 18px; }
+@media (hover: hover) and (pointer: fine) { .item summary:hover { background: #e4ddcf; } }
+@media (max-width: 600px) { .page { padding: 36px 20px 56px; min-height: calc(100svh - 80px); } .heading { margin-bottom: 30px; } .questions { gap: 12px; } .item summary { padding: 22px 18px; gap: 16px; } .answer { padding: 0 18px 24px; font-size: 13px; line-height: 1.8; } .toggle { flex-basis: 18px; } }
+@media (prefers-reduced-motion: reduce) { .item summary, .toggle::after { transition: none; } }
