@@ -296,3 +296,18 @@
  .blackGrey:hover .imagePlaceholder img { transform: translate(-50%, -50%) rotate(84deg) scale(1.15); }
 }
 @media (prefers-reduced-motion: reduce) { .imagePlaceholder img { transition: none; } }
+
+.blackGrey .imagePlaceholder video { display: block; width: 100%; height: 100%; object-fit: contain; transition: transform 400ms ease; }
+@media (min-width: 1001px) {
+ .fineLine { grid-column: 1; grid-row: 2; }
+ .fineLine .imagePlaceholder { aspect-ratio: auto; flex: 1; }
+ .blackGrey { grid-column: 2; grid-row: 1 / 3; }
+}
+@media (max-width: 1000px) and (min-width: 651px) {
+ .grid { grid-template-rows: auto 480px auto; }
+ .blackGrey { grid-column: 1 / 3; width: min(100%, 360px); justify-self: center; }
+ .blackGrey .imagePlaceholder { flex: none; aspect-ratio: 9 / 16; }
+}
+@media (max-width: 650px) { .blackGrey .imagePlaceholder { aspect-ratio: 9 / 16; } }
+@media (hover: hover) and (pointer: fine) { .blackGrey:hover video { transform: scale(1.02); } }
+@media (prefers-reduced-motion: reduce) { .blackGrey .imagePlaceholder video { transition: none; } }

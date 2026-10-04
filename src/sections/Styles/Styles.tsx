@@ -1,6 +1,6 @@
 import realismus from "../../assets/images/home-realismus.jpg";
 import fineLine from "../../assets/images/home-fineLine.jpg";
-import grafik from "../../assets/images/home-grafik.jpg";
+import grafik from "../../assets/images/home-grafik.mp4";
 import coverUp from "../../assets/images/home-coverUp.jpg";
 import color from "../../assets/images/home-color.jpg";
 import styles from "./Styles.module.scss";
@@ -27,7 +27,7 @@ export const Styles = () => {
             key={item.title}
             className={`${styles.card} ${styles[item.className]}`}
           >
-            <div className={styles.imagePlaceholder}><img src={item.image} alt={`${item.title} – Tattoo-Arbeit von Dana`} loading="lazy" /></div>
+            <div className={styles.imagePlaceholder}>{item.className === "blackGrey" ? <video src={item.image} autoPlay muted loop playsInline preload="metadata" aria-label="Grafik – Tattoo-Arbeit von Dana als Video" /> : <img src={item.image} alt={`${item.title} – Tattoo-Arbeit von Dana`} loading="lazy" />}</div>
 
             <div className={styles.label}>
               <span>{item.title}</span>
