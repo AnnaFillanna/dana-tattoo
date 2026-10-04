@@ -46,12 +46,7 @@
   color: #eee8da;
   text-decoration: none;
 
-  &:hover {
-    .imagePlaceholder {
-      transform: scale(0.985);
-    }
 
-  }
 }
 
 /* Большая вертикальная */
@@ -255,3 +250,8 @@
 @media (prefers-reduced-motion: reduce) {
   .imagePlaceholder { transition: none; }
 }
+
+.imagePlaceholder img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 400ms ease; }
+.coverUp .imagePlaceholder img { object-fit: contain; }
+@media (hover: hover) and (pointer: fine) { .card:hover .imagePlaceholder img { transform: scale(1.03); } }
+@media (prefers-reduced-motion: reduce) { .imagePlaceholder img { transition: none; } .card:hover .imagePlaceholder img { transform: none; } }
