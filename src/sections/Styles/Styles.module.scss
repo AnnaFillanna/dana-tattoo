@@ -260,7 +260,7 @@
 .blackGrey .imagePlaceholder { background: #101310; }
 .blackGrey .imagePlaceholder img {
  position: absolute; left: 50%; top: 50%; width: 100cqh; height: 100cqw;
- max-width: none; object-fit: cover; transform: translate(-50%, -50%) rotate(90deg) scale(1.04);
+ max-width: none; object-fit: contain; transform: translate(-50%, -50%) rotate(90deg);
 }
 @media (min-width: 1001px) {
  .styles { padding-top: 64px; padding-bottom: 56px; }
@@ -293,6 +293,6 @@
 @media (hover: hover) and (pointer: fine) {
  .card:hover .imagePlaceholder img { transform: scale(1.03); }
  .fineLine:hover .imagePlaceholder img { transform: scale(1.70); }
- .blackGrey:hover .imagePlaceholder img { transform: translate(-50%, -50%) rotate(90deg) scale(1.07); }
+ .blackGrey:hover .imagePlaceholder img { transform: translate(-50%, -50%) rotate(90deg) scale(1.03); }
 }
 @media (prefers-reduced-motion: reduce) { .imagePlaceholder img { transition: none; } }
