@@ -1,3 +1,4 @@
+import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './PiercingPage.module.scss';
 import septumOne from '../assets/images/piercing-septum-1.jpg';
@@ -55,7 +56,14 @@ const works = [
   { image: work21, alt: 'Helix-Piercing mit drei Schmucksteinen – Porträt und Detailaufnahme' },
 ];
 
-export const PiercingPage = () => (
+export const PiercingPage = () => {
+  const dialog = useRef<HTMLDialogElement>(null);
+  const [selected, setSelected] = useState<(typeof works)[number] | null>(null);
+  const openImage = (work: (typeof works)[number]) => {
+    setSelected(work);
+    dialog.current?.showModal();
+  };
+  return (
   <main className={styles.page}>
     <div className={styles.container}>
       <header className={styles.header}>
@@ -66,7 +74,9 @@ export const PiercingPage = () => (
       <section className={styles.gallery} aria-label="Piercing-Arbeiten von Dana">
         {works.map((work, index) => (
           <figure className={styles.work} key={work.image}>
-            <img src={work.image} alt={work.alt} width="853" height="1280" loading={index === 0 ? 'eager' : 'lazy'} />
+            <button className={styles.openImage} type="button" onClick={() => openImage(work)} aria-label={`${work.alt} – groß ansehen`}>
+              <img src={work.image} alt={work.alt} width="853" height="1280" loading={index === 0 ? 'eager' : 'lazy'} />
+            </button>
           </figure>
         ))}
       </section>
@@ -75,5 +85,12 @@ export const PiercingPage = () => (
         <Link to="/kontakt">Persönliche Beratung anfragen ↗</Link>
       </div>
     </div>
+    <dialog ref={dialog} className={styles.lightbox} aria-label="Piercing-Arbeit in Großansicht" onClick={event => {
+      if (event.target === event.currentTarget) dialog.current?.close();
+    }}>
+      <button type="button" className={styles.closeImage} onClick={() => dialog.current?.close()} aria-label="Großansicht schließen" autoFocus>×</button>
+      {selected && <img className={styles.fullImage} src={selected.image} alt={selected.alt} />}
+    </dialog>
   </main>
 );
+};
