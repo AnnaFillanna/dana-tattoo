@@ -251,7 +251,26 @@
   .imagePlaceholder { transition: none; }
 }
 
+.imagePlaceholder { container-type: size; }
 .imagePlaceholder img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 400ms ease; }
-.coverUp .imagePlaceholder img { object-fit: contain; }
-@media (hover: hover) and (pointer: fine) { .card:hover .imagePlaceholder img { transform: scale(1.03); } }
-@media (prefers-reduced-motion: reduce) { .imagePlaceholder img { transition: none; } .card:hover .imagePlaceholder img { transform: none; } }
+.realismus .imagePlaceholder { background: #626566; }
+.realismus .imagePlaceholder img { object-fit: contain; }
+.fineLine .imagePlaceholder img { transform: scale(1.65); object-position: 50% 49%; }
+.coverUp .imagePlaceholder { background: #393d43; }
+.coverUp .imagePlaceholder img { object-fit: cover; }
+.blackGrey .imagePlaceholder, .color .imagePlaceholder { background: #101310; }
+.blackGrey .imagePlaceholder img, .color .imagePlaceholder img {
+ position: absolute; left: 50%; top: 50%; width: 100cqh; height: 100cqw;
+ max-width: none; object-fit: contain; transform: translate(-50%, -50%) rotate(90deg);
+}
+@media (hover: hover) and (pointer: fine) {
+ .card:hover .imagePlaceholder img { transform: scale(1.03); }
+ .fineLine:hover .imagePlaceholder img { transform: scale(1.70); }
+ .blackGrey:hover .imagePlaceholder img, .color:hover .imagePlaceholder img { transform: translate(-50%, -50%) rotate(90deg) scale(1.03); }
+}
+@media (max-width: 1000px) and (min-width: 651px) {
+ .blackGrey .imagePlaceholder img, .color .imagePlaceholder img { position: static; width: 100%; height: 100%; transform: none; }
+ .blackGrey:hover .imagePlaceholder img, .color:hover .imagePlaceholder img { transform: scale(1.03); }
+}
+@media (max-width: 650px) { .blackGrey .imagePlaceholder { height: 300px; } }
+@media (prefers-reduced-motion: reduce) { .imagePlaceholder img { transition: none; } }
