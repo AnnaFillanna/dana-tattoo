@@ -311,3 +311,10 @@
 @media (max-width: 650px) { .blackGrey .imagePlaceholder { aspect-ratio: 9 / 16; } }
 @media (hover: hover) and (pointer: fine) { .blackGrey:hover video, .coverUp:hover video { transform: scale(1.02); } }
 @media (prefers-reduced-motion: reduce) { .blackGrey .imagePlaceholder video, .coverUp .imagePlaceholder video { transition: none; } }
+
+.mediaLink { display: block; width: 100%; height: 100%; }
+.mediaLink:focus-visible { outline: 2px solid #e2cca0; outline-offset: -4px; }
+.videoToggle { position: absolute; bottom: 8px; right: 8px; z-index: 1; width: 44px; height: 44px; display: grid; place-items: center; border: 0; background: transparent; color: #eee8da; cursor: pointer; }
+.videoToggle span { display: grid; place-items: center; min-width: 32px; height: 30px; padding: 0 4px; border: 1px solid #d2c6a755; border-radius: 3px; background: #07120fa6; font-size: 10px; }
+.videoToggle:hover span { background: #102b22e6; }
+.videoToggle:focus-visible { outline: 2px solid #e2cca0; outline-offset: 2px; }

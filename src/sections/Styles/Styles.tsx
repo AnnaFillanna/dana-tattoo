@@ -1,3 +1,4 @@
+import { useRef, useState } from "react";
 import realismus from "../../assets/images/home-realismus.jpg";
 import fineLine from "../../assets/images/home-fineLine.jpg";
 import grafik from "../../assets/images/home-grafik.mp4";
@@ -13,6 +14,28 @@ const tattooStyles = [
   { title: "Color Tattoo", image: color, className: "color" },
 ];
 
+const VideoCard = ({ src, title }: { src: string; title: string }) => {
+  const video = useRef<HTMLVideoElement>(null);
+  const [paused, setPaused] = useState(true);
+  const togglePlayback = () => {
+    const player = video.current;
+    if (!player) return;
+    if (player.paused) void player.play().catch(() => setPaused(true));
+    else player.pause();
+  };
+  const label = `${title}: Video ${paused ? 'abspielen' : 'pausieren'}`;
+  return <>
+    <a href="/gallery" className={styles.mediaLink} aria-label={`${title} – Galerie ansehen`}>
+      <video ref={video} src={src} autoPlay muted loop playsInline preload="metadata"
+        onPlay={() => setPaused(false)} onPause={() => setPaused(true)}
+        aria-label={`${title} – Tattoo-Arbeit von Dana als Video`} />
+    </a>
+    <button type="button" className={styles.videoToggle} onClick={togglePlayback} aria-label={label} title={label}>
+      <span aria-hidden="true">{paused ? 'Weiter' : 'Ⅱ'}</span>
+    </button>
+  </>;
+};
+
 export const Styles = () => {
   return (
     <section id="styles" className={styles.styles}>
@@ -22,17 +45,16 @@ export const Styles = () => {
 
       <div className={styles.grid}>
         {tattooStyles.map((item) => (
-          <a
-            href="/gallery"
+          <div
             key={item.title}
             className={`${styles.card} ${styles[item.className]}`}
           >
-            <div className={styles.imagePlaceholder}>{(item.className === "blackGrey" || item.className === "coverUp") ? <video src={item.image} autoPlay muted loop playsInline preload="metadata" aria-label={`${item.title} – Tattoo-Arbeit von Dana als Video`} /> : <img src={item.image} alt={`${item.title} – Tattoo-Arbeit von Dana`} loading="lazy" />}</div>
+            <div className={styles.imagePlaceholder}>{(item.className === "blackGrey" || item.className === "coverUp") ? <VideoCard src={item.image} title={item.title} /> : <a href="/gallery" className={styles.mediaLink}><img src={item.image} alt={`${item.title} – Tattoo-Arbeit von Dana`} loading="lazy" /></a>}</div>
 
             <div className={styles.label}>
-              <span>{item.title}</span>
+              <a href="/gallery">{item.title}</a>
             </div>
-          </a>
+          </div>
         ))}
       </div>
 
