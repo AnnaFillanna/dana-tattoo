@@ -110,3 +110,8 @@
   .videoControl { bottom: 16px; right: 24px; }
 }
 @media (prefers-reduced-motion: reduce) { .button { transition: none; } }
+
+.reviewBadge { position: absolute; top: 24px; right: clamp(24px, 4vw, 72px); z-index: 1; }
+.reviewBadge > a { margin-top: 0; }
+@media (max-width: 800px) { .content { padding-top: 184px; } .reviewBadge { top: 20px; right: 24px; } }
+@media (max-width: 600px) { .content { padding-top: 164px; } .reviewBadge { top: 16px; right: 20px; } }

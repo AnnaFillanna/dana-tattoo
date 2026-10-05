@@ -1,3 +1,4 @@
+import { GoogleReviewBadge } from '../../components/GoogleReviewBadge/GoogleReviewBadge';
 import { useEffect, useRef, useState } from 'react';
 import styles from './Hero.module.scss';
 import heroVideo from '../../assets/video/hero.mp4';
@@ -29,6 +30,8 @@ export const Hero = () => {
         <source src={heroVideo} type="video/mp4" />
       </video>
       <div className={styles.overlay} aria-hidden="true" />
+
+      <div className={styles.reviewBadge}><GoogleReviewBadge /></div>
 
       <div className={styles.content}>
         <p className={styles.eyebrow}>Dana Tattoo Studio</p>

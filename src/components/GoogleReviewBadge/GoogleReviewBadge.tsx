@@ -19,7 +19,7 @@ export const GoogleReviewBadge = ({ reviewUrl = GOOGLE_REVIEW_URL }: GoogleRevie
         <circle cx="90" cy="90" r="86" className={styles.outerRing} />
         <circle cx="90" cy="90" r="60" className={styles.innerRing} />
         <text><textPath href={`#${id}-top`} startOffset="50%" textAnchor="middle">DEINE ERFAHRUNG</textPath></text>
-        <text><textPath href={`#${id}-bottom`} startOffset="50%" textAnchor="middle">MEINE FREUDE</textPath></text>
+        <text><textPath href={`#${id}-bottom`} startOffset="50%" textAnchor="middle">VIELEN LIEBEN DANK</textPath></text>
         <path className={styles.diamond} d="M14 87 17 90 14 93 11 90ZM166 87 169 90 166 93 163 90Z" />
       </svg>
       <span className={styles.content} aria-hidden="true">
