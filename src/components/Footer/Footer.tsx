@@ -1,3 +1,4 @@
+import { GoogleReviewBadge } from '../GoogleReviewBadge/GoogleReviewBadge';
 import styles from './Footer.module.scss';
 import logo from '../../assets/images/logo.png';
 
@@ -49,6 +50,7 @@ export const Footer = () => (
       <div className={styles.signature}>
         <p>Tattoo Studio<br /><span>Andernach</span></p>
         <span className={styles.motto}>Individuell. Persönlich. Zeitlos.</span>
+        <div><GoogleReviewBadge /></div>
       </div>
     </div>
 

@@ -1,0 +1,30 @@
+.badge {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 164px;
+  height: 164px;
+  margin-top: 20px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 25%, var(--velvet-green), var(--color-bg));
+  color: var(--ivory);
+  text-decoration: none;
+  box-shadow: 0 5px 16px #00000024;
+  transition: transform 350ms ease, box-shadow 350ms ease;
+}
+.ring { position: absolute; inset: 0; width: 100%; height: 100%; fill: none; }
+.outerRing { stroke: var(--color-gold); stroke-width: .8; }
+.innerRing { stroke: var(--color-gold); stroke-width: .5; opacity: .5; }
+.ring text { fill: var(--color-gold-light); font: 500 10px var(--font-body); letter-spacing: 1.5px; }
+.diamond { fill: var(--color-gold); }
+.content { position: relative; display: flex; flex-direction: column; align-items: center; gap: 5px; }
+.flower { color: var(--color-gold-light); font-size: 17px; line-height: 1; }
+.title { font: 500 26px/1.05 var(--font-heading); letter-spacing: -.6px; }
+.subtitle { font: 400 11px/1.4 var(--font-body); }
+.stars { color: var(--color-gold-light); font-size: 13px; letter-spacing: 2px; line-height: 1.3; }
+.badge:focus-visible { outline: 2px solid var(--color-gold-light); outline-offset: 5px; }
+@media (hover: hover) and (pointer: fine) { .badge:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 8px 22px #00000030, 0 0 18px #c6a15b26; } }
+@media (max-width: 1000px) { .badge { width: 144px; height: 144px; } .title { font-size: 23px; } .content { gap: 4px; } }
+@media (max-width: 600px) { .badge { width: 124px; height: 124px; } .title { font-size: 21px; } .subtitle { font-size: 10px; } .stars { font-size: 11px; letter-spacing: 1px; } .flower { font-size: 13px; } .content { gap: 3px; } .ring text { font-size: 11px; letter-spacing: 1px; } }
+@media (prefers-reduced-motion: reduce) { .badge { transition: none; } .badge:hover { transform: none; } }
