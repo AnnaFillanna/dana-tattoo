@@ -1,7 +1,7 @@
 import { useId } from 'react';
 import styles from './GoogleReviewBadge.module.scss';
 
-export const GOOGLE_REVIEW_URL = 'GOOGLE_REVIEW_URL';
+export const GOOGLE_REVIEW_URL = 'https://www.google.com/search?q=Tattoo+by+Dana+Andernach#lrd=0x47be610016f48a3d:0xdec2cab6e389055f,3,,,,';
 
 type GoogleReviewBadgeProps = {
   reviewUrl?: string;
