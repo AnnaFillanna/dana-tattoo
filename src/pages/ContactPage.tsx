@@ -1,4 +1,4 @@
-import photo from '../assets/images/dana-studio-contact.jpg';
+import photo from '../assets/images/contact-wandbild.png';
 import styles from './ContactPage.module.scss';
 
 const address = 'Rheinstraße 4, 56626 Andernach';
@@ -15,7 +15,7 @@ export const ContactPage = () => {
           <div className={styles.ornament} aria-hidden="true"><span>✧</span></div>
         </header>
         <section className={styles.contact} aria-labelledby="studio-title">
-          <div className={styles.photo}><img src={photo} alt="Dana vor dem Tattoo-Studio neben dem Studioschild" /></div>
+          <div className={styles.photo}><img src={photo} alt="Grüne Studiowand mit goldenen Spiegeln, Bilderrahmen und Pflanzen" /></div>
           <div className={styles.details}>
             <p className={styles.eyebrow}>Persönlich. Individuell. Für dich.</p>
             <h2 id="studio-title">Dana Tattoo Studio</h2>
