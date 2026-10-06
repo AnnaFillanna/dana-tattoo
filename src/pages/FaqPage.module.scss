@@ -52,3 +52,8 @@
 .answerSection strong { font-weight: 600; color: #20382f; }
 @media (max-width: 800px) { .answer { grid-template-columns: 1fr; gap: 28px; padding: 26px 24px 32px; } }
 @media (max-width: 600px) { .answer { font-size: 16px; line-height: 1.8; padding: 24px 20px 30px; gap: 26px; } .answerSection h3 { font-size: 25px; } }
+
+.careList { padding-left: 1.4em; margin: 12px 0 20px; }
+.careList li + li { margin-top: 10px; }
+ul.careList { list-style: disc; }
+ol.careList { list-style: decimal; }

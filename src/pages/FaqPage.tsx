@@ -22,13 +22,44 @@ const questions = [
     ],
   },
   {
-    title: 'Körperstellen, die ich für Tattoos nicht empfehle',
-    labels: ['Meine Empfehlung', 'Haltbarkeit & Risiken', 'Gut abwägen'],
-    paragraphs: [
-      'Ich empfehle keine Tattoos an den Fingern, Handflächen, Händen und Füßen. An diesen Stellen ist die Haut ständig Reibung und Belastung ausgesetzt, wodurch das Pigment schlechter halten, schneller verblassen oder herausfallen kann.',
-      'Solche Tattoos benötigen häufig regelmäßige Nachbesserungen. Wenn versucht wird, das Pigment durch tieferes Einbringen besser zu halten, erhöht sich das Risiko, dass die Linien verlaufen (Blowout).',
-      'Daher empfehle ich, die Vor- und Nachteile dieser Körperstellen vorab gut abzuwägen. Für meine Arbeit empfehle ich diese Stellen nicht.',
-    ],
+    title: '🖤 Pflege eines Tattoos mit Heilfolie',
+    labels: [],
+    paragraphs: [],
+    content: <>
+      <section className={styles.answerSection}>
+        <h3>Wenn die Folie hält</h3>
+        <p><strong>Tag 1–3:</strong></p>
+        <ul className={styles.careList}>
+          <li>Die Folie nicht entfernen oder abziehen.</li>
+          <li>Duschen ist möglich, aber das Tattoo nicht einweichen oder lange mit heißem Wasser behandeln.</li>
+          <li>Etwas Flüssigkeit/Farbe unter der Folie ist normal.</li>
+        </ul>
+        <p><strong>Am 3.–4. Tag:</strong></p>
+        <ul className={styles.careList}>
+          <li>Die Folie entfernen.</li>
+          <li>Hände waschen → Folie vorsichtig abziehen → Tattoo mit einer milden, parfümfreien Seife waschen → vorsichtig mit einem sauberen Papiertuch trocken tupfen → eine dünne Schicht Wund- bzw. Heilsalbe auftragen.</li>
+        </ul>
+      </section>
+      <section className={styles.answerSection}>
+        <h3>Wenn sich die Folie vor Ablauf von 3 Tagen ablöst</h3>
+        <ol className={styles.careList}>
+          <li>Die Folie vollständig entfernen.</li>
+          <li>Hände waschen und das Tattoo mit einer milden Seife reinigen.</li>
+          <li>Vorsichtig mit einem sauberen Papiertuch trocknen.</li>
+          <li>Eine dünne Schicht Heilsalbe auftragen.</li>
+          <li>Mit einer sauberen Einweg-Unterlage oder einer sterilen, nicht haftenden Wundauflage abdecken.</li>
+        </ol>
+      </section>
+      <section className={styles.answerSection}>
+        <h3>Die Abdeckung alle 3–4 Stunden wechseln</h3>
+        <p>Abnehmen → Tattoo waschen → trocknen → Salbe auftragen → neu abdecken.</p>
+        <p>Das noch 1–2 Tage machen. Danach zur normalen Pflege übergehen: Das Tattoo bei Bedarf reinigen und für weitere 7–10 Tage etwa alle 3–4 Stunden eine dünne Schicht Creme auftragen, bis die Haut vollständig aufgehört hat, sich zu schälen.</p>
+      </section>
+      <section className={styles.answerSection}>
+        <h3>Bis zur vollständigen Heilung</h3>
+        <p>Nicht an der sich schälenden Haut oder an Krusten ziehen, nicht kratzen, das Tattoo nicht einweichen und bis zur vollständigen Heilung kein Schwimmbad oder keine Sauna besuchen.</p>
+      </section>
+    </>,
   },
 ];
 
@@ -41,10 +72,10 @@ export const FaqPage = () => (
         <div className={styles.ornament} aria-hidden="true"><span>✧</span></div>
       </header>
       <div className={styles.questions}>
-        {questions.map(({ title, paragraphs, labels }) => (
+        {questions.map(({ title, paragraphs, labels, content }) => (
           <details className={styles.item} key={title}>
             <summary><h2>{title}</h2><span className={styles.toggle} aria-hidden="true" /></summary>
-            <div className={styles.answer}>{paragraphs.map((paragraph, index) => {
+            <div className={styles.answer}>{content ?? paragraphs.map((paragraph, index) => {
               const sentenceEnd = paragraph.indexOf('. ') + 1;
               return <section className={styles.answerSection} key={labels[index]}>
                 <h3>{labels[index]}</h3>
