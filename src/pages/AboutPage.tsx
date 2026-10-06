@@ -36,7 +36,7 @@ function ValueIcon({ name }: { name: string }) {
 
 export const AboutPage = () => {
   const carousel = useRef<HTMLUListElement>(null);
-  const [paused, setPaused] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  const [paused, setPaused] = useState(false);
   useEffect(() => {
     const list = carousel.current;
     if (!list) return;
@@ -51,7 +51,7 @@ export const AboutPage = () => {
     window.addEventListener('pointercancel', resume);
     const timer = window.setInterval(() => {
       const rect = list.getBoundingClientRect();
-      if (paused || touching || Date.now() < resumeAt || !mobile.matches || document.hidden || rect.bottom < 0 || rect.top > innerHeight) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || paused || touching || Date.now() < resumeAt || !mobile.matches || document.hidden || rect.bottom < 0 || rect.top > innerHeight) return;
       const step = (list.firstElementChild as HTMLElement).getBoundingClientRect().width + 14;
       const max = list.scrollWidth - list.clientWidth;
       const start = list.scrollLeft;

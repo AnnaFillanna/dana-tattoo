@@ -1,3 +1,4 @@
+import { useLocation } from "react-router-dom";
 import { useRef, useState } from "react";
 import styles from "./Header.module.scss";
 import logo from "../../assets/images/logo.png";
@@ -13,7 +14,7 @@ const navItems = [
 ];
 
 export const Header = () => {
-  const currentPath = window.location.pathname.replace(/\/+$/, "") || "/";
+  const currentPath = useLocation().pathname.replace(/\/+$/, "") || "/";
   const [menuOpen, setMenuOpen] = useState(false);
   const menuButton = useRef<HTMLButtonElement>(null);
   return (

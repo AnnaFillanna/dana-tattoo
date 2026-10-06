@@ -1,3 +1,4 @@
+import { Seo } from './seo/Seo';
 import { Routes, Route } from 'react-router-dom';
 
 import { Header } from './components/Header/Header';
@@ -21,6 +22,7 @@ import { PageLayout } from './pages/PageLayout';
 function App() {
   return (
     <>
+      <Seo />
       <Header />
 
       <Routes>
