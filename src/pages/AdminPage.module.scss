@@ -14,3 +14,10 @@
 }
 
 .authenticated { max-width: 1000px; }
+
+.panel .passwordToggle { background: transparent; color: var(--velvet-green); border-color: var(--antique-metal); min-height: 48px; }
+@media (max-width: 480px) {
+  .page { padding: 32px 16px; }
+  .panel { padding: 24px 16px; overflow-wrap: anywhere; }
+  .panel button { min-height: 48px; width: 100%; }
+}

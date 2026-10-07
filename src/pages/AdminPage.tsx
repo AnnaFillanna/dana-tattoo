@@ -13,6 +13,7 @@ export const AdminPage = () => {
   const [busy, setBusy] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     let active = true;
@@ -60,14 +61,14 @@ export const AdminPage = () => {
       const { error: loginError } = await client.auth.signInWithPassword({ email: email.trim(), password });
       if (loginError) {
         setError(loginError.code === 'invalid_credentials'
-          ? 'E-Mail oder Passwort ist falsch. Bitte prüfe deine Eingaben.'
+          ? 'E-Mail oder Passwort ist falsch. Prüfe deine E-Mail und zeige das Passwort zur Kontrolle an. Verwende die Zugangsdaten für die Website-Verwaltung.'
           : loginError.status === 429
             ? 'Zu viele Anmeldeversuche. Bitte versuche es in einigen Minuten erneut.'
             : 'Die Anmeldung ist derzeit nicht möglich. Bitte prüfe deine Verbindung und versuche es erneut.');
-      }
+      } else { setPassword(''); setShowPassword(false); }
     } catch {
       setError('Die Anmeldung ist derzeit nicht möglich. Bitte prüfe deine Verbindung und versuche es erneut.');
-    } finally { setPassword(''); setBusy(false); }
+    } finally { setBusy(false); }
   };
 
   const logout = async () => {
@@ -95,9 +96,12 @@ export const AdminPage = () => {
         ) : (
           <form onSubmit={event => void login(event)}>
             <label htmlFor="admin-email">E-Mail</label>
-            <input id="admin-email" name="email" type="email" autoComplete="username" required value={email} onChange={event => setEmail(event.target.value)} disabled={busy} />
+            <input id="admin-email" name="email" type="email" inputMode="email" autoCapitalize="none" autoCorrect="off" spellCheck={false} enterKeyHint="next" autoComplete="username" required value={email} onChange={event => setEmail(event.target.value)} disabled={busy} />
             <label htmlFor="admin-password">Passwort</label>
-            <input id="admin-password" name="password" type="password" autoComplete="current-password" required value={password} onChange={event => setPassword(event.target.value)} disabled={busy} />
+            <input id="admin-password" name="password" type={showPassword ? 'text' : 'password'} autoComplete="current-password" autoCapitalize="none" autoCorrect="off" spellCheck={false} enterKeyHint="go" required value={password} onChange={event => setPassword(event.target.value)} disabled={busy} />
+            <button className={styles.passwordToggle} type="button" aria-controls="admin-password" aria-pressed={showPassword} disabled={busy} onClick={() => setShowPassword(value => !value)}>
+              {showPassword ? 'Passwort verbergen' : 'Passwort anzeigen'}
+            </button>
             <button type="submit" disabled={busy}>{busy ? 'Anmelden …' : 'Anmelden'}</button>
           </form>
         )}
