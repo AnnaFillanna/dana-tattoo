@@ -19,3 +19,27 @@ body {
 #root {
   min-height: 100vh;
 }
+
+:root {
+  // Static vintage grain: 0 disables it; recommended range is 0.03–0.05.
+  --grain-opacity: 0.04;
+}
+
+// Native dialogs live above the document, so they receive the same overlay.
+body::after,
+dialog[open]::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  pointer-events: none;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22200%22%20height%3D%22200%22%20viewBox%3D%220%200%20200%20200%22%3E%3Cfilter%20id%3D%22grain%22%20x%3D%220%22%20y%3D%220%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%220.95%22%20numOctaves%3D%223%22%20stitchTiles%3D%22stitch%22%20seed%3D%228%22%2F%3E%3CfeColorMatrix%20type%3D%22saturate%22%20values%3D%220%22%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20filter%3D%22url%28%23grain%29%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+}
+
+@media print {
+  body::after,
+  dialog[open]::after { display: none; }
+}
