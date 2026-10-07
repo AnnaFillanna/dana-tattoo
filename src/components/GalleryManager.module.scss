@@ -1,0 +1,16 @@
+.manager { margin-top: 36px; border-top: 1px solid var(--antique-metal); padding-top: 24px;
+ h2 { font: 400 30px var(--font-heading); margin: 16px 0; }
+ p { margin: 12px 0; }
+ select { padding: 12px; min-height: 46px; width: 100%; font: inherit; color: var(--velvet-green); background: var(--ivory); border: 1px solid var(--antique-metal); }
+ select:focus-visible, a:focus-visible { outline: 2px solid var(--color-gold); outline-offset: 3px; }
+ a { display: inline-block; margin-top: 24px; text-decoration: underline; }
+}
+.preview { max-width: 100%; max-height: 240px; object-fit: contain; }
+.toolbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-top: 32px; }
+.grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 24px;
+ article { min-width: 0; }
+ img { width: 100%; height: 220px; object-fit: contain; }
+ button { margin-bottom: 8px; }
+}
+@media(max-width: 750px) { .grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+@media(max-width: 480px) { .grid { grid-template-columns: 1fr; } }

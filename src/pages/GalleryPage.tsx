@@ -1,4 +1,6 @@
-import { useRef, useState } from 'react';
+import { getSupabase } from '../lib/supabase';
+import { listGalleryPhotos } from '../lib/galleryStorage';
+import { useEffect, useRef, useState } from 'react';
 import { galleryCategories, galleryImages, type GalleryCategory, type GalleryImage } from '../data/gallery';
 import { PageLayout } from './PageLayout';
 import styles from './GalleryPage.module.scss';
@@ -6,11 +8,26 @@ import styles from './GalleryPage.module.scss';
 const PAGE_SIZE = 12;
 
 export const GalleryPage = () => {
+  const [remotePhotos, setRemotePhotos] = useState<GalleryImage[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
+  useEffect(() => {
+    let active = true;
+    void (async () => {
+      try {
+        const client = await getSupabase();
+        const photos = client ? await listGalleryPhotos(client) : [];
+        if (active) setRemotePhotos(photos);
+      } catch { if (active) setLoadError(true); }
+      finally { if (active) setLoading(false); }
+    })();
+    return () => { active = false; };
+  }, []);
   const [category, setCategory] = useState<GalleryCategory>('all');
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const [selected, setSelected] = useState<GalleryImage | null>(null);
   const dialog = useRef<HTMLDialogElement>(null);
-  const filtered = galleryImages.filter(image => category === 'all' || image.category === category);
+  const filtered = [...remotePhotos, ...galleryImages].filter(image => category === 'all' || image.category === category);
 
   const openImage = (image: GalleryImage) => {
     setSelected(image);
@@ -36,7 +53,7 @@ export const GalleryPage = () => {
         <p className={styles.srOnly} role="status">
           {filtered.length ? `${filtered.length} Arbeiten in dieser Kategorie` : 'Neue Einblicke folgen in Kürze.'}
         </p>
-        {filtered.length ? (
+        {loading ? <p role="status">Galerie wird geladen …</p> : loadError ? <p role="alert">Die Fotos konnten nicht geladen werden. Bitte lade die Seite erneut.</p> : filtered.length ? (
           <>
             <div className={styles.grid}>
               {filtered.slice(0, visibleCount).map(image => (

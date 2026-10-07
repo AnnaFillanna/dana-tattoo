@@ -27,7 +27,7 @@ import work18 from '../assets/images/piercing-gallery-18.jpg';
 import work19 from '../assets/images/piercing-gallery-19.jpg';
 import work20 from '../assets/images/piercing-gallery-20.jpg';
 
-import work21 from '../assets/images/piercing-gallery-21.jpg';
+
 
 const works = [
   { image: septumOne, alt: 'Septum-Piercing mit Kugelverschluss – Porträt und Detailaufnahme' },
@@ -53,7 +53,6 @@ const works = [
   { image: work18, alt: 'Helix-Piercing – Porträt und Detailaufnahme' },
   { image: work19, alt: 'Industrial-Piercing – Porträt und Detailaufnahme' },
   { image: work20, alt: 'Zungenpiercing – Porträt und Detailaufnahme' },
-  { image: work21, alt: 'Helix-Piercing mit drei Schmucksteinen – Porträt und Detailaufnahme' },
 ];
 
 export const PiercingPage = () => {

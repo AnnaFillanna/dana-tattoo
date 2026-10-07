@@ -1,3 +1,4 @@
+import { AdminPage } from './pages/AdminPage';
 import { Seo } from './seo/Seo';
 import { Routes, Route } from 'react-router-dom';
 
@@ -37,6 +38,7 @@ function App() {
           }
         />
 
+        <Route path="/admin" element={<AdminPage />} />
         <Route path="/ueber-mich" element={<AboutPage />} />
         <Route path="/styles" element={<StylesPage />} />
         <Route path="/gallery" element={<GalleryPage />} />

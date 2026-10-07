@@ -1,6 +1,7 @@
 export const siteUrl = 'https://tattoodana.de';
 export type PageSeo = { title: string; description: string; index: boolean };
 export const pages: Record<string, PageSeo> = {
+  '/admin': { title: 'Verwaltung | Dana Tattoo Studio', description: 'Geschützter Verwaltungsbereich.', index: false },
   '/': { title: 'Tattoo & Piercing in Andernach | Dana Tattoo Studio', description: 'Individuelle Tattoos und Piercings bei Dana in Andernach. Realismus, Fine Line, Cover-ups und Narben-Cover. Persönliche Beratung und Termine nach Vereinbarung.', index: true },
   '/ueber-mich': { title: 'Dana – Tätowiererin in Andernach | Cover-ups & Fine Line', description: 'Lerne Dana kennen: Tätowiererin und Piercerin mit über 10 Jahren Erfahrung. Individuelle Tattoos, Cover-ups und Narben-Cover in Andernach.', index: true },
   '/piercing': { title: 'Piercing in Andernach | Arbeiten von Dana Tattoo Studio', description: 'Entdecke Danas Piercing-Arbeiten: Septum, Nostril, Helix und mehr. Persönliche Beratung im Dana Tattoo Studio in Andernach. Termine nach Vereinbarung.', index: true },
