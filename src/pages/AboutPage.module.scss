@@ -132,3 +132,7 @@
   .specialties li:hover .stylePhoto { transform: none; }
   .specialties li:hover .piercingFrame .stylePhoto { transform: scale(1.045); }
 }
+
+@media (max-width: 600px) {
+  .carouselControls button { display: none; }
+}

@@ -22,7 +22,7 @@ const questions = [
     ],
   },
   {
-    title: '🖤 Pflege eines Tattoos mit Heilfolie',
+    title: 'Pflege eines Tattoos mit Heilfolie',
     labels: [],
     paragraphs: [],
     content: <>

@@ -3,7 +3,6 @@ import logo from '../../assets/images/logo.png';
 
 const links = [
   { label: 'Über mich', href: '/ueber-mich' },
-  { label: 'Styles', href: '/styles' },
   { label: 'Gallery', href: '/gallery' },
   { label: 'Preise', href: '/preise' },
   { label: 'FAQ', href: '/faq' },

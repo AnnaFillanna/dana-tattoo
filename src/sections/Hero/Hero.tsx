@@ -46,7 +46,6 @@ export const Hero = () => {
           <a className={styles.button} href="/kontakt">
             Jetzt Termin buchen
           </a>
-          <a className={styles.explore} href="/styles">Styles entdecken</a>
         </div>
       </div>
 
