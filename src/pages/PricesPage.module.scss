@@ -1,0 +1,42 @@
+.pricing {
+  h2 { font-family: var(--font-heading); font-size: clamp(36px, 4vw, 52px); font-weight: 400; line-height: 1.15; margin: 0 0 36px; }
+}
+.columns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(36px, 7vw, 100px); }
+.groups { display: grid; gap: 28px; }
+.category {
+  min-width: 0;
+  h3 { font-family: var(--font-heading); font-size: 28px; font-weight: 400; line-height: 1.2; margin: 0 0 12px; }
+  dl { margin: 0; }
+}
+.row {
+  display: flex; align-items: baseline; gap: 14px; padding: 12px 0;
+  font-size: 15px; line-height: 1.65;
+  dt { min-width: 0; }
+  dd { margin: 0; white-space: nowrap; font-variant-numeric: tabular-nums; }
+}
+.line { flex: 1; min-width: 12px; border-bottom: 1px solid rgb(6 40 32 / 14%); }
+.included {
+  margin-top: 44px;
+  p { margin: 0; font-size: 16px; line-height: 1.7; }
+  p + p { margin-top: 6px; font-size: 13px; }
+}
+.tattoo {
+  margin-top: clamp(48px, 7vw, 80px); padding-top: clamp(32px, 5vw, 56px); border-top: 1px solid rgb(6 40 32 / 25%);
+  h2 { margin-bottom: 22px; }
+  p { max-width: 720px; margin: 0; font-size: 16px; line-height: 1.85; }
+}
+.button {
+  display: inline-flex; align-items: center; justify-content: center; max-width: 100%; min-height: 48px;
+  margin-top: 28px; padding: 14px 22px; border: 1px solid var(--antique-metal); color: inherit;
+  font-size: 12px; letter-spacing: .04em; line-height: 1.6; text-align: center;
+  transition: border-color .25s ease;
+  &:focus-visible { outline: 2px solid var(--color-gold); outline-offset: 5px; }
+  @media (hover: hover) { &:hover { border-color: var(--velvet-green); } }
+}
+@media (max-width: 700px) {
+  .columns { grid-template-columns: 1fr; gap: 28px; }
+  .pricing h2 { margin-bottom: 28px; }
+  .row { font-size: 14px; gap: 10px; }
+  .included { margin-top: 32px; }
+}
+@media (prefers-reduced-motion: reduce) { .button { transition: none; } }
