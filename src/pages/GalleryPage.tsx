@@ -18,7 +18,7 @@ export const GalleryPage = () => {
   };
 
   return (
-    <PageLayout title="Gallery">
+    <PageLayout title="Gallery" eyebrowClassName={styles.eyebrow}>
       <div className={styles.filters} role="group" aria-label="Galerie nach Stil filtern">
         {galleryCategories.map(item => (
           <button
