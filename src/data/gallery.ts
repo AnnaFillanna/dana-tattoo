@@ -11,6 +11,7 @@ export type GalleryCategory = (typeof galleryCategories)[number]['id'];
 export type GalleryImage = {
   id: string;
   src: string;
+  kind?: 'image' | 'video';
   alt: string;
   category: Exclude<GalleryCategory, 'all'>;
 };

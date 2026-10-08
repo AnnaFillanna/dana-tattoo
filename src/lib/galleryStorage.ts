@@ -1,15 +1,15 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
 import { galleryCategories, type GalleryImage } from '../data/gallery';
 
-export const PHOTO_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
+export const PHOTO_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'video/mp4'];
 export const MAX_PHOTO_SIZE = 50 * 1024 * 1024;
 const bucket = 'gallery';
 const categories = galleryCategories.filter(category => category.id !== 'all');
 
 export function validatePhoto(file: Pick<File, 'type' | 'size'>): string | null {
-  if (!PHOTO_TYPES.includes(file.type)) return 'Bitte wähle ein JPG-, PNG- oder WebP-Foto.';
+  if (!PHOTO_TYPES.includes(file.type)) return 'Bitte wähle ein JPG-, PNG-, WebP-Foto oder MP4-Video.';
   if (!file.size) return 'Die Datei ist leer.';
-  if (file.size > MAX_PHOTO_SIZE) return 'Das Foto darf höchstens 50 MB groß sein.';
+  if (file.size > MAX_PHOTO_SIZE) return 'Die Datei darf höchstens 50 MB groß sein.';
   return null;
 }
 
@@ -23,10 +23,10 @@ export async function listGalleryPhotos(client: SupabaseClient): Promise<Gallery
       });
       if (error) throw error;
       for (const file of data) {
-        if (!file.id || !/\.(jpg|jpeg|png|webp)$/i.test(file.name)) continue;
+        if (!file.id || !/\.(jpg|jpeg|png|webp|mp4)$/i.test(file.name)) continue;
         const path = `${folder}/${file.name}`;
         photos.push({ id: path, src: client.storage.from(bucket).getPublicUrl(path).data.publicUrl,
-          alt: `${category.label} – Arbeit von Dana Tattoo Studio`, category: category.id });
+          alt: `${category.label} – Arbeit von Dana Tattoo Studio`, category: category.id, kind: /\.mp4$/i.test(file.name) ? 'video' : 'image' });
       }
       if (data.length < 100) break;
     }
@@ -39,7 +39,7 @@ export async function uploadGalleryPhoto(client: SupabaseClient, file: File, cat
   const validation = validatePhoto(file);
   if (validation) throw new Error(validation);
   if (!categories.some(item => item.id === category)) throw new Error('Bitte wähle eine Kategorie.');
-  const extension = { 'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp' }[file.type];
+  const extension = { 'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp', 'video/mp4': 'mp4' }[file.type];
   const path = `portfolio/${category}/${Date.now()}-${crypto.randomUUID()}.${extension}`;
   const { error } = await client.storage.from(bucket).upload(path, file, {
     contentType: file.type, cacheControl: '3600', upsert: false,

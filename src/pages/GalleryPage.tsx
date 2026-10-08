@@ -58,8 +58,8 @@ export const GalleryPage = () => {
             <div className={styles.grid}>
               {filtered.slice(0, visibleCount).map(image => (
                 <button className={styles.card} key={image.id} type="button" onClick={() => openImage(image)} aria-label={`${image.alt} – vergrößern`}>
-                  <img src={image.src} alt={image.alt} loading="lazy" decoding="async" />
-                  <span className={styles.zoom} aria-hidden="true">+</span>
+                  {image.kind === 'video' ? <video src={`${image.src}#t=0.1`} muted playsInline preload="metadata" aria-hidden="true" /> : <img src={image.src} alt={image.alt} loading="lazy" decoding="async" />}
+                  <span className={styles.zoom} aria-hidden="true">{image.kind === 'video' ? '▷' : '+'}</span>
                 </button>
               ))}
             </div>
@@ -75,9 +75,9 @@ export const GalleryPage = () => {
           </div>
         )}
       </section>
-      <dialog ref={dialog} className={styles.lightbox} aria-label="Vergrößerte Ansicht" onClick={event => { if (event.target === event.currentTarget) dialog.current?.close(); }}>
+      <dialog ref={dialog} className={styles.lightbox} aria-label="Vergrößerte Ansicht" onClose={() => setSelected(null)} onClick={event => { if (event.target === event.currentTarget) dialog.current?.close(); }}>
         <button className={styles.close} type="button" autoFocus aria-label="Ansicht schließen" onClick={() => dialog.current?.close()}>×</button>
-        {selected && <img src={selected.src} alt={selected.alt} />}
+        {selected && (selected.kind === 'video' ? <video key={selected.src} src={selected.src} controls muted playsInline preload="metadata" aria-label={selected.alt} /> : <img src={selected.src} alt={selected.alt} />)}
       </dialog>
     </PageLayout>
   );

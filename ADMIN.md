@@ -22,13 +22,13 @@ manuell angelegte Benutzer Zugriff erhalten sollen.
 Manuell mit konfiguriertem Projekt prüfen: falsche Zugangsdaten, Login, Refresh,
 Logout, erneuter direkter Aufruf von `/admin`, abgelaufene Session und Netzwerkausfall.
 
-## Fotos verwalten
+## Fotos und Videos verwalten
 
-`/admin` bietet nach dem Login Kategorieauswahl, Einzelbild-Upload mit Vorschau
-(JPG/PNG/WebP bis 50 MB), eine Fotoliste und Löschen mit Bestätigung.
+`/admin` bietet nach dem Login Kategorieauswahl, Datei-Upload mit Vorschau
+(JPG/PNG/WebP und MP4 bis 50 MB), eine Medienliste und Löschen mit Bestätigung.
 Dateien werden ausschließlich unter `gallery/portfolio/<kategorie>/` gespeichert.
-Die öffentliche Galerie lädt diese Fotos direkt aus Storage. Bestehende Fotos
-außerhalb dieses Verzeichnisses bleiben unberührt. Videos werden hier noch nicht angeboten.
+Die öffentliche Galerie lädt diese Medien direkt aus Storage. Bestehende Fotos
+außerhalb dieses Verzeichnisses bleiben unberührt. MP4-Videos erscheinen mit Wiedergabesteuerung in der vergrößerten Galerieansicht. Sie sind standardmäßig stumm und werden beim Schließen der Ansicht entfernt, damit die Wiedergabe endet.
 
 Die öffentliche SELECT-Policy wurde im bestehenden Supabase-Projekt eingerichtet.
 Für eine neue Umgebung liegt dieselbe Policy in `supabase/gallery-public-read.sql`. Das erlaubt ausschließlich

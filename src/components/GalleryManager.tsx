@@ -38,7 +38,7 @@ export function GalleryManager({ client }: { client: SupabaseClient }) {
     setBusy(true); setError(''); setMessage('');
     try {
       await uploadGalleryPhoto(client, file, category);
-      setMessage('Foto hochgeladen. Es ist jetzt in der Galerie veröffentlicht.');
+      setMessage('Datei hochgeladen. Sie ist jetzt in der Galerie veröffentlicht.');
       setFile(null); setPreview('');
       if (input.current) input.current.value = '';
       await refresh();
@@ -51,39 +51,39 @@ export function GalleryManager({ client }: { client: SupabaseClient }) {
     try {
       await deleteGalleryPhoto(client, pendingDelete);
       setPhotos(items => items.filter(item => item.id !== pendingDelete.id));
-      setPendingDelete(null); setMessage('Foto gelöscht.');
+      setPendingDelete(null); setMessage('Datei gelöscht.');
     } catch { setError('Löschen fehlgeschlagen. Bitte prüfe deine Verbindung und Zugriffsrechte.'); }
     finally { setBusy(false); }
   };
 
   return <section className={styles.manager} aria-labelledby="photos-heading">
-    <h2 id="photos-heading">Fotos verwalten</h2>
-    <p>Wähle eine Kategorie und ein Foto. Mit „Hochladen“ veröffentlichst du es direkt in der Galerie.</p>
+    <h2 id="photos-heading">Fotos und Videos verwalten</h2>
+    <p>Wähle eine Kategorie und ein Foto oder Video. Mit „Hochladen“ veröffentlichst du es direkt in der Galerie.</p>
     <form onSubmit={event => void upload(event)}>
       <label htmlFor="photo-category">Kategorie</label>
       <select id="photo-category" value={category} disabled={busy} onChange={event => setCategory(event.target.value as GalleryImage['category'])}>
         {galleryCategories.filter(item => item.id !== 'all').map(item => <option key={item.id} value={item.id}>{item.label}</option>)}
       </select>
-      <label htmlFor="photo-file">Foto auswählen</label>
-      <input ref={input} id="photo-file" type="file" accept="image/jpeg,image/png,image/webp" required disabled={busy} onChange={event => {
+      <label htmlFor="photo-file">Foto oder Video auswählen</label>
+      <input ref={input} id="photo-file" type="file" accept="image/jpeg,image/png,image/webp,video/mp4" required disabled={busy} onChange={event => {
         const next = event.target.files?.[0] ?? null;
         setMessage(''); setFile(null); setPreview('');
         const validation = next ? validatePhoto(next) : null;
         setError(validation ?? '');
         if (next && !validation) { setFile(next); setPreview(URL.createObjectURL(next)); }
       }} />
-      <p>JPG, PNG oder WebP · maximal 50 MB pro Foto.</p>
-      {preview && <img className={styles.preview} src={preview} alt="Vorschau des ausgewählten Fotos" />}
+      <p>JPG, PNG, WebP oder MP4 · maximal 50 MB pro Datei.</p>
+      {preview && (file?.type === 'video/mp4' ? <video className={styles.preview} src={preview} controls muted playsInline preload="metadata" aria-label="Videovorschau" /> : <img className={styles.preview} src={preview} alt="Vorschau des ausgewählten Fotos" />)}
       <button type="submit" disabled={!file || busy}>{busy ? 'Bitte warten …' : 'Hochladen'}</button>
     </form>
     {error && <p role="alert">{error}</p>}
     <p role="status">{message}</p>
-    <div className={styles.toolbar}><h2>Deine Fotos</h2><button type="button" disabled={busy || loading} onClick={() => { setError(''); void refresh(); }}>Liste aktualisieren</button></div>
-    {loading ? <p role="status">Fotos werden geladen …</p> : !photos.length && <p>Noch keine Fotos hochgeladen.</p>}
+    <div className={styles.toolbar}><h2>Deine Fotos und Videos</h2><button type="button" disabled={busy || loading} onClick={() => { setError(''); void refresh(); }}>Liste aktualisieren</button></div>
+    {loading ? <p role="status">Dateien werden geladen …</p> : !photos.length && <p>Noch keine Dateien hochgeladen.</p>}
     <div className={styles.grid}>{photos.map(photo => <article key={photo.id}>
-      <img src={photo.src} alt={photo.alt} loading="lazy" />
+      {photo.kind === 'video' ? <video src={photo.src} controls muted playsInline preload="metadata" aria-label={photo.alt} /> : <img src={photo.src} alt={photo.alt} loading="lazy" />}
       <p>{galleryCategories.find(item => item.id === photo.category)?.label}</p>
-      {pendingDelete?.id === photo.id ? <div><p>Dieses Foto endgültig aus der Galerie löschen?</p><button type="button" disabled={busy} onClick={() => void remove()}>Ja, löschen</button> <button type="button" disabled={busy} onClick={() => setPendingDelete(null)}>Abbrechen</button></div>
+      {pendingDelete?.id === photo.id ? <div><p>Diese Datei endgültig aus der Galerie löschen?</p><button type="button" disabled={busy} onClick={() => void remove()}>Ja, löschen</button> <button type="button" disabled={busy} onClick={() => setPendingDelete(null)}>Abbrechen</button></div>
         : <button type="button" disabled={busy} onClick={() => setPendingDelete(photo)}>Löschen</button>}
     </article>)}</div>
     <a href="/gallery" target="_blank" rel="noopener noreferrer">Galerie ansehen</a>

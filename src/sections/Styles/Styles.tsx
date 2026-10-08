@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import realismus from "../../assets/images/home-realismus.jpg";
 import fineLine from "../../assets/images/home-fineLine.jpg";
 import grafik from "../../assets/images/home-grafik.mp4";
@@ -37,13 +37,34 @@ const VideoCard = ({ src, title }: { src: string; title: string }) => {
 };
 
 export const Styles = () => {
+  const carousel = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const track = carousel.current;
+    if (!track) return;
+    const mobile = window.matchMedia('(max-width: 650px)');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let touchedUntil = 0;
+    const pause = () => { touchedUntil = Date.now() + 8000; };
+    track.addEventListener('pointerdown', pause);
+    track.addEventListener('wheel', pause, { passive: true });
+    const timer = window.setInterval(() => {
+      if (!mobile.matches || reducedMotion.matches || document.hidden || Date.now() < touchedUntil || track.contains(document.activeElement)) return;
+      const bounds = track.getBoundingClientRect();
+      if (bounds.bottom <= 0 || bounds.top >= window.innerHeight) return;
+      const cards = Array.from(track.children) as HTMLElement[];
+      const positions = cards.map(card => card.getBoundingClientRect().left - bounds.left + track.scrollLeft);
+      const next = positions.find(position => position > track.scrollLeft + 10) ?? 0;
+      track.scrollTo({ left: next, behavior: 'smooth' });
+    }, 4500);
+    return () => { window.clearInterval(timer); track.removeEventListener('pointerdown', pause); track.removeEventListener('wheel', pause); };
+  }, []);
   return (
     <section id="styles" className={styles.styles}>
       <div className={styles.heading}>
         <h2>Styles & Leistungen</h2>
       </div>
 
-      <div className={styles.grid}>
+      <div ref={carousel} className={styles.grid} aria-label="Tattoo-Stile" tabIndex={0}>
         {tattooStyles.map((item) => (
           <div
             key={item.title}
@@ -58,13 +79,6 @@ export const Styles = () => {
         ))}
       </div>
 
-      <div className={styles.piercingRow}>
-        <span className={styles.piercingText}>Auch bei uns</span>
-
-        <a href="/piercing" className={styles.piercingButton}>
-          Piercing
-        </a>
-      </div>
     </section>
   );
 };
