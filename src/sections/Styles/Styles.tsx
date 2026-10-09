@@ -4,6 +4,8 @@ import fineLine from "../../assets/images/home-fineLine.jpg";
 import grafik from "../../assets/images/home-grafik.mp4";
 import coverUp from "../../assets/images/home-coverUp.mp4";
 import color from "../../assets/images/home-color.jpg";
+import fineLineMobile from "../../assets/images/home-fine-line-mobile.mp4";
+import piercingMobile from "../../assets/images/home-piercing-mobile.mp4";
 import styles from "./Styles.module.scss";
 
 const tattooStyles = [
@@ -14,7 +16,7 @@ const tattooStyles = [
   { title: "Color Tattoo", image: color, className: "color" },
 ];
 
-const VideoCard = ({ src, title }: { src: string; title: string }) => {
+const VideoCard = ({ src, title, href = "/gallery" }: { src: string; title: string; href?: string }) => {
   const video = useRef<HTMLVideoElement>(null);
   const [paused, setPaused] = useState(true);
   const togglePlayback = () => {
@@ -25,7 +27,7 @@ const VideoCard = ({ src, title }: { src: string; title: string }) => {
   };
   const label = `${title}: Video ${paused ? 'abspielen' : 'pausieren'}`;
   return <>
-    <a href="/gallery" className={styles.mediaLink} aria-label={`${title} – Galerie ansehen`}>
+    <a href={href} className={styles.mediaLink} aria-label={`${title} – Galerie ansehen`}>
       <video ref={video} src={src} autoPlay muted loop playsInline preload="metadata"
         onPlay={() => setPaused(false)} onPause={() => setPaused(true)}
         aria-label={`${title} – Tattoo-Arbeit von Dana als Video`} />
@@ -38,6 +40,14 @@ const VideoCard = ({ src, title }: { src: string; title: string }) => {
 
 export const Styles = () => {
   const carousel = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const query = window.matchMedia('(max-width: 650px)');
+    const update = () => setIsMobile(query.matches);
+    update();
+    query.addEventListener('change', update);
+    return () => query.removeEventListener('change', update);
+  }, []);
   useEffect(() => {
     const track = carousel.current;
     if (!track) return;
@@ -70,13 +80,17 @@ export const Styles = () => {
             key={item.title}
             className={`${styles.card} ${styles[item.className]}`}
           >
-            <div className={styles.imagePlaceholder}>{(item.className === "blackGrey" || item.className === "coverUp") ? <VideoCard src={item.image} title={item.title} /> : <a href="/gallery" className={styles.mediaLink}><img src={item.image} alt={`${item.title} – Tattoo-Arbeit von Dana`} loading="lazy" /></a>}</div>
+            <div className={styles.imagePlaceholder}>{(item.className === "blackGrey" || item.className === "coverUp" || (isMobile && item.className === "fineLine")) ? <VideoCard src={isMobile && item.className === "fineLine" ? fineLineMobile : item.image} title={item.title} /> : <a href="/gallery" className={styles.mediaLink}><img src={item.image} alt={`${item.title} – Tattoo-Arbeit von Dana`} loading="lazy" /></a>}</div>
 
             <div className={styles.label}>
               <a href="/gallery">{item.title}</a>
             </div>
           </div>
         ))}
+        {isMobile && <div className={styles.card}>
+          <div className={styles.imagePlaceholder}><VideoCard src={piercingMobile} title="Piercing" href="/piercing" /></div>
+          <div className={styles.label}><a href="/piercing">PIERCING</a></div>
+        </div>}
       </div>
 
     </section>
