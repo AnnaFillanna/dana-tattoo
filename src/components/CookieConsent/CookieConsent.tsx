@@ -2,9 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "./CookieConsent.module.scss";
 import { Cookie } from "lucide-react";
 
-export type CookieChoice = "accepted" | "rejected";
-
-const STORAGE_KEY = "dana-cookie-consent";
+import { readCookieChoice, saveCookieChoice, type CookieChoice } from "../../lib/cookieConsent";
 
 export function CookieConsent() {
   const [showSettings, setShowSettings] = useState(false);
@@ -16,8 +14,7 @@ export function CookieConsent() {
     // Read browser storage after hydration; it is unavailable during prerendering.
     void Promise.resolve().then(() => {
       if (!active) return;
-      let saved: string | null = null;
-      try { saved = window.localStorage.getItem(STORAGE_KEY); } catch { /* Storage can be blocked. */ }
+      const saved = readCookieChoice();
       setMapsEnabled(saved === "accepted");
       setIsBannerOpen(saved !== "accepted" && saved !== "rejected");
     });
@@ -25,12 +22,11 @@ export function CookieConsent() {
   }, []);
 
   function saveChoice(value: CookieChoice) {
-    try { window.localStorage.setItem(STORAGE_KEY, value); } catch { /* Still close when storage is unavailable. */ }
+    saveCookieChoice(value);
     setMapsEnabled(value === "accepted");
     setShowSettings(false);
     setIsBannerOpen(false);
 
-    window.dispatchEvent(new Event("cookie-consent-change"));
   }
 
   if (!isBannerOpen) {

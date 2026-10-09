@@ -43,3 +43,6 @@
 .page::after { right: 6px; }
 
 @media (max-width: 700px) { .page::before, .page::after { width: 14px; opacity: .22; background-size: 20px auto; } .page::before { left: 1px; } .page::after { right: 1px; } }
+
+.mapNotice { min-height: 380px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 32px; text-align: center; gap: 12px; }
+.mapNotice p { max-width: 440px; margin: 0; font-size: 14px; line-height: 1.7; }

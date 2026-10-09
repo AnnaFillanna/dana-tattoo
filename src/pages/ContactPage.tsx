@@ -1,3 +1,4 @@
+import { useMapsConsent } from '../lib/cookieConsent';
 import photo from '../assets/images/contact-wandbild.png';
 import styles from './ContactPage.module.scss';
 
@@ -6,6 +7,7 @@ const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComp
 const whatsappUrl = `https://wa.me/4915731414097?text=${encodeURIComponent('Hallo Dana! Ich möchte einen Beratungstermin vereinbaren.')}`;
 
 export const ContactPage = () => {
+  const mapsEnabled = useMapsConsent();
   return (
     <main className={styles.page}>
       <div className={styles.container}>
@@ -31,7 +33,7 @@ export const ContactPage = () => {
         <section className={styles.location} aria-labelledby="location-title">
           <div className={styles.locationHeading}><h2 id="location-title">So findest du mich</h2></div>
           <div className={styles.map}>
-            <iframe title="Standort Dana Tattoo Studio in Andernach" src={`https://maps.google.com/maps?q=${encodeURIComponent(address)}&z=16&output=embed`} referrerPolicy="no-referrer-when-downgrade" allowFullScreen />
+            {mapsEnabled ? <iframe title="Standort Dana Tattoo Studio in Andernach" src={`https://maps.google.com/maps?q=${encodeURIComponent(address)}&z=16&output=embed`} referrerPolicy="no-referrer-when-downgrade" allowFullScreen /> : <div className={styles.mapNotice}><p>Google Maps ist deaktiviert.</p><p>Um die Karte anzuzeigen, erlaube Google Maps in den Cookie-Einstellungen über das Cookie-Symbol.</p></div>}
           </div>
           <a className={styles.route} href={mapsUrl} target="_blank" rel="noreferrer">Route planen</a>
         </section>
