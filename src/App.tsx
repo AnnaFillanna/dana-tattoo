@@ -1,25 +1,25 @@
-import { AdminPage } from './pages/AdminPage';
-import { Seo } from './seo/Seo';
-import { Routes, Route } from 'react-router-dom';
+import { AdminPage } from "./pages/AdminPage";
+import { Seo } from "./seo/Seo";
+import { Routes, Route } from "react-router-dom";
 
-import { Header } from './components/Header/Header';
-import { Footer } from './components/Footer/Footer';
+import { Header } from "./components/Header/Header";
+import { Footer } from "./components/Footer/Footer";
 
-import { Hero } from './sections/Hero/Hero';
-import { Styles } from './sections/Styles/Styles';
-import { About } from './sections/About/About';
+import { Hero } from "./sections/Hero/Hero";
+import { Styles } from "./sections/Styles/Styles";
+import { About } from "./sections/About/About";
 
-import { AboutPage } from './pages/AboutPage';
-import { StylesPage } from './pages/StylesPage';
-import { GalleryPage } from './pages/GalleryPage';
-import { PricesPage } from './pages/PricesPage';
-import { FaqPage } from './pages/FaqPage';
-import { ContactPage } from './pages/ContactPage';
-import { PiercingPage } from './pages/PiercingPage';
-import { ImpressumPage } from './pages/ImpressumPage';
-import { PrivacyPage } from './pages/PrivacyPage';
-import { PageLayout } from './pages/PageLayout';
-
+import { AboutPage } from "./pages/AboutPage";
+import { StylesPage } from "./pages/StylesPage";
+import { GalleryPage } from "./pages/GalleryPage";
+import { PricesPage } from "./pages/PricesPage";
+import { FaqPage } from "./pages/FaqPage";
+import { ContactPage } from "./pages/ContactPage";
+import { PiercingPage } from "./pages/PiercingPage";
+import { ImpressumPage } from "./pages/ImpressumPage";
+import { PrivacyPage } from "./pages/PrivacyPage";
+import { PageLayout } from "./pages/PageLayout";
+import { CookieConsent } from "./components/CookieConsent/CookieConsent";
 function App() {
   return (
     <>
@@ -43,6 +43,7 @@ function App() {
         <Route path="/styles" element={<StylesPage />} />
         <Route path="/gallery" element={<GalleryPage />} />
         <Route path="/preise" element={<PricesPage />} />
+
         <Route path="/faq" element={<FaqPage />} />
         <Route path="/kontakt" element={<ContactPage />} />
         <Route path="/piercing" element={<PiercingPage />} />
@@ -53,13 +54,16 @@ function App() {
           path="*"
           element={
             <PageLayout title="Seite nicht gefunden">
-              <p>Diese Seite gibt es nicht. Bitte wähle eine Seite aus dem Menü.</p>
+              <p>
+                Diese Seite gibt es nicht. Bitte wähle eine Seite aus dem Menü.
+              </p>
             </PageLayout>
           }
         />
       </Routes>
 
       <Footer />
+      <CookieConsent />
     </>
   );
 }
