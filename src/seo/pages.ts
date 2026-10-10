@@ -7,10 +7,10 @@ export const pages: Record<string, PageSeo> = {
   '/piercing': { title: 'Piercing in Andernach | Arbeiten von Dana Tattoo Studio', description: 'Entdecke Danas Piercing-Arbeiten: Septum, Nostril, Helix und mehr. Persönliche Beratung im Dana Tattoo Studio in Andernach. Termine nach Vereinbarung.', index: true },
   '/faq': { title: 'Tattoo-Fragen: Preise & Nachbesserung | Dana Andernach', description: 'Wie entsteht der Tattoo-Preis? Wann ist eine Nachbesserung nötig? Dana beantwortet häufige Fragen zu Tattoos, Körperstellen und der persönlichen Beratung.', index: true },
   '/kontakt': { title: 'Kontakt & Anfahrt | Dana Tattoo Studio in Andernach', description: 'Dana Tattoo Studio, Rheinstraße 4, 56626 Andernach. Vereinbare deine Tattoo- oder Piercing-Beratung per WhatsApp. Termine nach Vereinbarung.', index: true },
-  // Publish these in search only after their placeholder content has been completed.
+  // The unfinished Styles page remains excluded from search.
   '/styles': { title: 'Tattoo-Stile | Dana Tattoo Studio Andernach', description: 'Tattoo-Stile und Leistungen im Dana Tattoo Studio in Andernach.', index: false },
-  '/gallery': { title: 'Tattoo-Galerie | Dana Tattoo Studio Andernach', description: 'Tattoo-Arbeiten von Dana in Andernach.', index: false },
-  '/preise': { title: 'Tattoo-Preise | Dana Tattoo Studio Andernach', description: 'Persönliche Beratung zur Preisgestaltung deines Tattoos bei Dana in Andernach.', index: false },
+  '/gallery': { title: 'Tattoo-Galerie | Dana Tattoo Studio Andernach', description: 'Tattoo-Arbeiten von Dana in Andernach.', index: true },
+  '/preise': { title: 'Tattoo-Preise | Dana Tattoo Studio Andernach', description: 'Persönliche Beratung zur Preisgestaltung deines Tattoos bei Dana in Andernach.', index: true },
   '/impressum': { title: 'Impressum | Dana Tattoo Studio', description: 'Impressum des Dana Tattoo Studios in Andernach.', index: false },
   '/datenschutz': { title: 'Datenschutz | Dana Tattoo Studio', description: 'Datenschutzhinweise des Dana Tattoo Studios in Andernach.', index: false },
 };
