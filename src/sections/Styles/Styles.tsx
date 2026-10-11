@@ -74,7 +74,7 @@ export const Styles = () => {
         <h2>Styles & Leistungen</h2>
       </div>
 
-      <div ref={carousel} className={styles.grid} aria-label="Tattoo-Stile" tabIndex={0}>
+      <div ref={carousel} className={styles.grid} role="region" aria-label="Tattoo-Stile" tabIndex={0}>
         {tattooStyles.map((item) => (
           <div
             key={item.title}

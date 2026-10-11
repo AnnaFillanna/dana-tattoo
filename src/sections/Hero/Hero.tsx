@@ -36,11 +36,11 @@ export const Hero = () => {
       <div className={styles.content}>
         <p className={styles.eyebrow}>Dana Tattoo Studio</p>
         <h1 id="hero-title" className={styles.heroTitle}>
-          Kunst auf<br /><span className={styles.heroAccent}>deiner</span> Haut.
+          Kunst auf{' '}<br /><span className={styles.heroAccent}>deiner</span> Haut.
         </h1>
         <div className={styles.divider} aria-hidden="true"><span>✦</span></div>
         <p className={styles.description}>
-          Individuelle Tattoos mit Bedeutung,<br />Präzision und Leidenschaft.
+          Individuelle Tattoos mit Bedeutung,{' '}<br />Präzision und Leidenschaft.
         </p>
         <div className={styles.actions}>
           <a className={styles.button} href="/kontakt">

@@ -23,10 +23,10 @@ export const About = ({ portraitSrc = danaPortrait }: AboutProps) => (
 
       <div className={styles.content}>
         <p className={styles.eyebrow}>Die Person hinter der Kunst</p>
-        <h2 id="about-heading">Die Künstlerin<br />hinter <em>deinem</em><br />Tattoo</h2>
+        <h2 id="about-heading">Die Künstlerin{' '}<br />hinter <em>deinem</em>{' '}<br />Tattoo</h2>
         <div className={styles.divider} aria-hidden="true" />
         {/* Entwurf: vor der Veröffentlichung mit Dana abstimmen. */}
-        <p className={styles.intro}>Deine Idee. Deine Geschichte.<br />Ein Tattoo, das zu dir gehört.</p>
+        <p className={styles.intro}>Deine Idee. Deine Geschichte.{' '}<br />Ein Tattoo, das zu dir gehört.</p>
         <p className={styles.description}>
           Ich bin Dana. Gemeinsam mit dir möchte ich aus einer ersten Idee
           ein persönliches Motiv entwickeln — mit einem offenen Ohr für

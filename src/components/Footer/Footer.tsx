@@ -16,7 +16,7 @@ export const Footer = () => (
     <div className={styles.invitation}>
       <div className={styles.intro}>
         <p className={styles.eyebrow}>Dein Tattoo beginnt mit einer Idee</p>
-        <h2>Deine Idee.<br />Unsere Kunst.<br /><span>Für immer.</span></h2>
+        <h2>Deine Idee.{' '}<br />Unsere Kunst.{' '}<br /><span>Für immer.</span></h2>
         <p className={styles.description}>
           Du hast schon ein Motiv im Kopf oder suchst noch Inspiration?
           Lass uns gemeinsam herausfinden, was zu dir passt.
@@ -26,7 +26,7 @@ export const Footer = () => (
       <section className={styles.contactPanel} aria-labelledby="footer-contact-title">
         <div className={styles.panelHeading}>
           <span className={styles.eyebrow}>Kontakt & Beratung</span>
-          <h3 id="footer-contact-title">Erzähl uns<br />von deiner Idee.</h3>
+          <h3 id="footer-contact-title">Erzähl uns{' '}<br />von deiner Idee.</h3>
           <p>Schreib Dana direkt per WhatsApp für eine persönliche Beratung zu deinem Tattoo.</p>
         </div>
 
@@ -46,7 +46,7 @@ export const Footer = () => (
         </div>
       </nav>
       <div className={styles.signature}>
-        <p>Tattoo Studio<br /><span>Andernach</span></p>
+        <p>Tattoo Studio{' '}<br /><span>Andernach</span></p>
         <span className={styles.motto}>Individuell. Persönlich. Zeitlos.</span>
       </div>
     </div>
