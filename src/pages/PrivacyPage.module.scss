@@ -20,6 +20,27 @@
 
 @media (max-width: 600px) {
   .page {
-    padding: 100px 18px 50px;
+    padding: 32px 18px 60px;
+  }
+
+  .container {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  .container :global(.itrk-legaltext) {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .container :global(.itrk-legaltext h1) {
+    font-size: 28px;
+    line-height: 1.2;
+  }
+
+  .container :global(.itrk-legaltext h2) {
+    font-size: 23px;
+    line-height: 1.3;
   }
 }
+
