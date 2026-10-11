@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import styles from "./CookieConsent.module.scss";
 import { Cookie } from "lucide-react";
 
-import { readCookieChoice, saveCookieChoice, type CookieChoice } from "../../lib/cookieConsent";
+import {
+  readCookieChoice,
+  saveCookieChoice,
+  type CookieChoice,
+} from "../../lib/cookieConsent";
 
 export function CookieConsent() {
   const [showSettings, setShowSettings] = useState(false);
@@ -18,7 +22,9 @@ export function CookieConsent() {
       setMapsEnabled(saved === "accepted");
       setIsBannerOpen(saved !== "accepted" && saved !== "rejected");
     });
-    return () => { active = false; };
+    return () => {
+      active = false;
+    };
   }, []);
 
   function saveChoice(value: CookieChoice) {
@@ -26,7 +32,6 @@ export function CookieConsent() {
     setMapsEnabled(value === "accepted");
     setShowSettings(false);
     setIsBannerOpen(false);
-
   }
 
   if (!isBannerOpen) {
@@ -75,7 +80,10 @@ export function CookieConsent() {
         </p>
 
         <p>Du kannst deine Entscheidung jederzeit ändern.</p>
-
+        <p className={styles.privacyLink}>
+          Weitere Informationen findest du in unserer{" "}
+          <a href="/datenschutz">Datenschutzerklärung</a>.
+        </p>
         <div className={styles.buttons}>
           <button type="button" onClick={() => saveChoice("accepted")}>
             Alle akzeptieren

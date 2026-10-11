@@ -1,0 +1,25 @@
+
+.page {
+  min-height: 100vh;
+  padding: 120px 24px 80px;
+  background: #e9e4d9;
+  color: #253b32;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.title {
+  margin-bottom: 40px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(38px, 5vw, 60px);
+  font-weight: 500;
+}
+
+@media (max-width: 600px) {
+  .page {
+    padding: 100px 18px 50px;
+  }
+}

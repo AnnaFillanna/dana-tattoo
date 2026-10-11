@@ -1,0 +1,26 @@
+
+.page {
+  min-height: 100vh;
+  background-color: #e9e4d9;;
+  color: #253b32;
+  padding: 100px 24px 80px;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(42px, 5vw, 64px);
+  font-weight: 500;
+  margin-bottom: 40px;
+}
+
+.legalText {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  line-height: 1.8;
+  color: #253b32;
+}

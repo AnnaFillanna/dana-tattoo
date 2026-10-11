@@ -239,3 +239,17 @@
     color: #253b32;
   }
 }
+.privacyLink {
+  font-size: 12px;
+
+  a {
+    color: #253b32;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+
+    &:hover {
+      color: #a88b55;
+    }
+  }
+}
