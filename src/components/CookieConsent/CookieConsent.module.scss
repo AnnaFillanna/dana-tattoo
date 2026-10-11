@@ -1,9 +1,20 @@
-
 .overlay {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  display: flex;
+  display: none;
+  &[open] {
+    display: flex;
+  }
+  &::backdrop {
+    background: transparent;
+  }
+  width: 100%;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  border: 0;
   align-items: flex-end;
   justify-content: center;
   padding: 24px;
@@ -115,7 +126,6 @@
   }
 }
 
-
 .cookieIcon {
   position: fixed;
   bottom: 24px;
@@ -162,7 +172,6 @@
     font-size: 22px;
   }
 }
-
 
 .settingRow {
   display: flex;
@@ -252,4 +261,16 @@
       color: #a88b55;
     }
   }
+}
+.cookieIcon[hidden] {
+  display: none;
+}
+.banner {
+  max-height: calc(100dvh - 48px);
+  overflow-y: auto;
+}
+.saveButton:focus-visible,
+.closeButton:focus-visible {
+  outline: 3px solid #b49a65;
+  outline-offset: 3px;
 }

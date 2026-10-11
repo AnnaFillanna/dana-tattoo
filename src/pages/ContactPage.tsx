@@ -14,28 +14,79 @@ export const ContactPage = () => {
         <header className={styles.heading}>
           <p>Dein Weg zu Dana</p>
           <h1>Kontakt</h1>
-          <div className={styles.ornament} aria-hidden="true"><span>✧</span></div>
+          <div className={styles.ornament} aria-hidden="true">
+            <span>✧</span>
+          </div>
         </header>
         <section className={styles.contact} aria-labelledby="studio-title">
-          <div className={styles.photo}><img src={photo} alt="Grüne Studiowand mit goldenen Spiegeln, Bilderrahmen und Pflanzen" /></div>
+          <div className={styles.photo}>
+            <img
+              src={photo}
+              alt="Grüne Studiowand mit goldenen Spiegeln, Bilderrahmen und Pflanzen"
+            />
+          </div>
           <div className={styles.details}>
             <p className={styles.eyebrow}>Persönlich. Individuell. Für dich.</p>
             <h2 id="studio-title">Dana Tattoo Studio</h2>
             <dl>
-              <div><dt>Adresse</dt><dd><a href={mapsUrl} target="_blank" rel="noreferrer">Rheinstraße 4<br />56626 Andernach</a></dd></div>
-              <div><dt>Telefon / WhatsApp</dt><dd><a href="tel:+4915731414097">+49 1573 1414097</a></dd></div>
-              <div><dt>Instagram</dt><dd><a href="https://www.instagram.com/tat_dana/" target="_blank" rel="noreferrer">@tat_dana</a></dd></div>
-              <div><dt>Termine</dt><dd>Termine nach Vereinbarung</dd></div>
+              <div>
+                <dt>Adresse</dt>
+                <dd>
+                  <a href={mapsUrl} target="_blank" rel="noreferrer">
+                    Rheinstraße 4<br />
+                    56626 Andernach
+                  </a>
+                </dd>
+              </div>
+              <div>
+                <dt>Telefon / WhatsApp</dt>
+                <dd>
+                  <a href="tel:+4915731414097">+49 1573 1414097</a>
+                </dd>
+              </div>
+              <div>
+                <dt>Instagram</dt>
+                <dd>
+                  <a href="https://www.instagram.com/tat_dana/" target="_blank" rel="noreferrer">
+                    @tat_dana
+                  </a>
+                </dd>
+              </div>
+              <div>
+                <dt>Termine</dt>
+                <dd>Termine nach Vereinbarung</dd>
+              </div>
             </dl>
-            <a className={styles.button} href={whatsappUrl} target="_blank" rel="noreferrer">WhatsApp Beratung</a>
+            <a className={styles.button} href={whatsappUrl} target="_blank" rel="noreferrer">
+              WhatsApp Beratung
+            </a>
           </div>
         </section>
         <section className={styles.location} aria-labelledby="location-title">
-          <div className={styles.locationHeading}><h2 id="location-title">So findest du mich</h2></div>
-          <div className={styles.map}>
-            {mapsEnabled ? <iframe title="Standort Dana Tattoo Studio in Andernach" src={`https://maps.google.com/maps?q=${encodeURIComponent(address)}&z=16&output=embed`} referrerPolicy="no-referrer-when-downgrade" allowFullScreen /> : <div className={styles.mapNotice}><p>Google Maps ist deaktiviert.</p><p>Um die Karte anzuzeigen, erlaube Google Maps in den Cookie-Einstellungen über das Cookie-Symbol.</p></div>}
+          <div className={styles.locationHeading}>
+            <h2 id="location-title">So findest du mich</h2>
           </div>
-          <a className={styles.route} href={mapsUrl} target="_blank" rel="noreferrer">Route planen</a>
+          <div className={styles.map}>
+            {mapsEnabled ? (
+              <iframe
+                title="Standort Dana Tattoo Studio in Andernach"
+                src={`https://maps.google.com/maps?q=${encodeURIComponent(address)}&z=16&output=embed`}
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
+            ) : (
+              <div className={styles.mapNotice}>
+                <p>Google Maps ist deaktiviert.</p>
+                <p>
+                  Um die Karte anzuzeigen, erlaube Google Maps in den Cookie-Einstellungen über das
+                  Cookie-Symbol.
+                </p>
+              </div>
+            )}
+          </div>
+          <a className={styles.route} href={mapsUrl} target="_blank" rel="noreferrer">
+            Route planen
+          </a>
         </section>
       </div>
     </main>

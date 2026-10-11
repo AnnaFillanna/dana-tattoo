@@ -47,3 +47,11 @@ Weitere Inhalte, Studiofotos und finale Details werden schrittweise integriert.
 👩‍💻 Entwicklung
 Konzipiert und entwickelt von Anna Filippi.
 Umgesetzt mit React und TypeScript als reales Kundenprojekt.
+## Codequalität
+
+Einheitliche Formatierung: `npm run format`. Vor einem Commit:
+`npm run format:check`, `npm run lint`, `npm test`, `npm run build`.
+GitHub Actions führt diese Prüfungen bei Pushes und Pull Requests aus.
+TypeScript läuft im Strict-Modus. Sicherheitsupdates kontrolliert mit
+`npm audit` prüfen. Zugangsdaten gehören ausschließlich in lokale bzw.
+Hosting-Umgebungsvariablen, nicht in das Repository.

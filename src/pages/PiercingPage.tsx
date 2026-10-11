@@ -27,8 +27,6 @@ import work18 from '../assets/images/piercing-gallery-18.jpg';
 import work19 from '../assets/images/piercing-gallery-19.jpg';
 import work20 from '../assets/images/piercing-gallery-20.jpg';
 
-
-
 const works = [
   { image: septumOne, alt: 'Septum-Piercing mit Kugelverschluss – Porträt und Detailaufnahme' },
   { image: septumTwo, alt: 'Septum-Piercing mit spitzen Enden – Porträt und Detailaufnahme' },
@@ -63,33 +61,63 @@ export const PiercingPage = () => {
     dialog.current?.showModal();
   };
   return (
-  <main className={styles.page}>
-    <div className={styles.container}>
-      <header className={styles.header}>
-        <p className={styles.eyebrow}>Dana · Piercing</p>
-        <h1>Ein kleiner Akzent.<br /><em>Ganz du.</em></h1>
-        <p>Entdecke eine Auswahl meiner Piercing-Arbeiten. Du hast einen Wunsch oder eine Frage? Gemeinsam besprechen wir, was zu dir passt.</p>
-      </header>
-      <section className={styles.gallery} aria-label="Piercing-Arbeiten von Dana">
-        {works.map((work, index) => (
-          <figure className={styles.work} key={work.image}>
-            <button className={styles.openImage} type="button" onClick={() => openImage(work)} aria-label={`${work.alt} – groß ansehen`}>
-              <img src={work.image} alt={work.alt} width="853" height="1280" loading={index === 0 ? 'eager' : 'lazy'} />
-            </button>
-          </figure>
-        ))}
-      </section>
-      <div className={styles.contact}>
-        <p>Dein Piercing beginnt mit einem Gespräch.</p>
-        <Link to="/kontakt">Persönliche Beratung anfragen ↗</Link>
+    <main className={styles.page}>
+      <div className={styles.container}>
+        <header className={styles.header}>
+          <p className={styles.eyebrow}>Dana · Piercing</p>
+          <h1>
+            Ein kleiner Akzent. <br />
+            <em>Ganz du.</em>
+          </h1>
+          <p>
+            Entdecke eine Auswahl meiner Piercing-Arbeiten. Du hast einen Wunsch oder eine Frage?
+            Gemeinsam besprechen wir, was zu dir passt.
+          </p>
+        </header>
+        <section className={styles.gallery} aria-label="Piercing-Arbeiten von Dana">
+          {works.map((work, index) => (
+            <figure className={styles.work} key={work.image}>
+              <button
+                className={styles.openImage}
+                type="button"
+                onClick={() => openImage(work)}
+                aria-label={`${work.alt} – groß ansehen`}
+              >
+                <img
+                  src={work.image}
+                  alt={work.alt}
+                  width="853"
+                  height="1280"
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                />
+              </button>
+            </figure>
+          ))}
+        </section>
+        <div className={styles.contact}>
+          <p>Dein Piercing beginnt mit einem Gespräch.</p>
+          <Link to="/kontakt">Persönliche Beratung anfragen ↗</Link>
+        </div>
       </div>
-    </div>
-    <dialog ref={dialog} className={styles.lightbox} aria-label="Piercing-Arbeit in Großansicht" onClick={event => {
-      if (event.target === event.currentTarget) dialog.current?.close();
-    }}>
-      <button type="button" className={styles.closeImage} onClick={() => dialog.current?.close()} aria-label="Großansicht schließen" autoFocus>×</button>
-      {selected && <img className={styles.fullImage} src={selected.image} alt={selected.alt} />}
-    </dialog>
-  </main>
-);
+      <dialog
+        ref={dialog}
+        className={styles.lightbox}
+        aria-label="Piercing-Arbeit in Großansicht"
+        onClick={(event) => {
+          if (event.target === event.currentTarget) dialog.current?.close();
+        }}
+      >
+        <button
+          type="button"
+          className={styles.closeImage}
+          onClick={() => dialog.current?.close()}
+          aria-label="Großansicht schließen"
+          autoFocus
+        >
+          ×
+        </button>
+        {selected && <img className={styles.fullImage} src={selected.image} alt={selected.alt} />}
+      </dialog>
+    </main>
+  );
 };

@@ -9,7 +9,9 @@ type PageLayoutProps = {
 
 export const PageLayout = ({ title, children, eyebrowClassName }: PageLayoutProps) => (
   <main className={styles.page}>
-    <a className={styles.back} href="/">Zur Startseite</a>
+    <a className={styles.back} href="/">
+      Zur Startseite
+    </a>
     <header className={styles.heading}>
       <p className={eyebrowClassName}>Dana Tattoo Studio</p>
       <h1>{title}</h1>

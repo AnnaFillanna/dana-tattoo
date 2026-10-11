@@ -26,19 +26,28 @@ export function metadata(pathname: string) {
       ['name', 'twitter:description', page.description],
       ['name', 'twitter:image', image],
     ],
-    schema: pages[path]?.index ? {
-      '@context': 'https://schema.org',
-      '@type': 'TattooParlor',
-      '@id': siteUrl + '/#studio',
-      name: 'Dana Tattoo Studio',
-      alternateName: 'Tattoo by Dana',
-      url: siteUrl + '/',
-      image,
-      logo: new URL(logo, siteUrl).href,
-      telephone: '+49 1573 1414097',
-      address: { '@type': 'PostalAddress', streetAddress: 'Rheinstraße 4', postalCode: '56626', addressLocality: 'Andernach', addressCountry: 'DE' },
-      sameAs: ['https://www.instagram.com/tat_dana/'],
-      description: 'Individuelle Tattoos und Piercings in Andernach. Termine nach Vereinbarung.',
-    } : null,
+    schema: pages[path]?.index
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'TattooParlor',
+          '@id': siteUrl + '/#studio',
+          name: 'Dana Tattoo Studio',
+          alternateName: 'Tattoo by Dana',
+          url: siteUrl + '/',
+          image,
+          logo: new URL(logo, siteUrl).href,
+          telephone: '+49 1573 1414097',
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: 'Rheinstraße 4',
+            postalCode: '56626',
+            addressLocality: 'Andernach',
+            addressCountry: 'DE',
+          },
+          sameAs: ['https://www.instagram.com/tat_dana/'],
+          description:
+            'Individuelle Tattoos und Piercings in Andernach. Termine nach Vereinbarung.',
+        }
+      : null,
   };
 }

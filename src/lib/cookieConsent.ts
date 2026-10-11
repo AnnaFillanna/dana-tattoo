@@ -10,12 +10,18 @@ export function readCookieChoice(): CookieChoice | null {
   try {
     const saved = window.localStorage.getItem(STORAGE_KEY);
     return saved === 'accepted' || saved === 'rejected' ? saved : null;
-  } catch { return sessionChoice; }
+  } catch {
+    return sessionChoice;
+  }
 }
 
 export function saveCookieChoice(value: CookieChoice) {
   sessionChoice = value;
-  try { window.localStorage.setItem(STORAGE_KEY, value); } catch { /* Keep this session's choice when storage is blocked. */ }
+  try {
+    window.localStorage.setItem(STORAGE_KEY, value);
+  } catch {
+    /* Keep this session's choice when storage is blocked. */
+  }
   window.dispatchEvent(new Event(CHANGE_EVENT));
 }
 
@@ -29,5 +35,9 @@ function subscribe(listener: () => void) {
 }
 
 export function useMapsConsent() {
-  return useSyncExternalStore(subscribe, () => readCookieChoice() === 'accepted', () => false);
+  return useSyncExternalStore(
+    subscribe,
+    () => readCookieChoice() === 'accepted',
+    () => false,
+  );
 }

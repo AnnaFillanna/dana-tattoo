@@ -1,33 +1,32 @@
-import { useLocation } from "react-router-dom";
-import { useRef, useState } from "react";
-import styles from "./Header.module.scss";
-import logo from "../../assets/images/logo.png";
+import { useLocation } from 'react-router-dom';
+import { useRef, useState } from 'react';
+import styles from './Header.module.scss';
+import logo from '../../assets/images/logo.png';
 
 const navItems = [
-  { label: "Home", href: "/" },
-  { label: "Über mich", href: "/ueber-mich" },
-  { label: "Gallery", href: "/gallery" },
-  { label: "Preise", href: "/preise" },
-  { label: "FAQ", href: "/faq" },
-  { label: "Kontakt", href: "/kontakt" },
+  { label: 'Home', href: '/' },
+  { label: 'Über mich', href: '/ueber-mich' },
+  { label: 'Gallery', href: '/gallery' },
+  { label: 'Preise', href: '/preise' },
+  { label: 'FAQ', href: '/faq' },
+  { label: 'Kontakt', href: '/kontakt' },
 ];
 
 export const Header = () => {
-  const currentPath = useLocation().pathname.replace(/\/+$/, "") || "/";
+  const currentPath = useLocation().pathname.replace(/\/+$/, '') || '/';
   const [menuOpen, setMenuOpen] = useState(false);
   const menuButton = useRef<HTMLButtonElement>(null);
   return (
     <header
       className={styles.header}
       onKeyDown={(event) => {
-        if (event.key === "Escape" && menuOpen) {
+        if (event.key === 'Escape' && menuOpen) {
           setMenuOpen(false);
           menuButton.current?.focus();
         }
       }}
       onBlur={(event) => {
-        if (!event.currentTarget.contains(event.relatedTarget))
-          setMenuOpen(false);
+        if (!event.currentTarget.contains(event.relatedTarget)) setMenuOpen(false);
       }}
     >
       <a className={styles.logo} href="/" onClick={() => setMenuOpen(false)}>
@@ -40,10 +39,10 @@ export const Header = () => {
         className={styles.menuToggle}
         aria-expanded={menuOpen}
         aria-controls="main-navigation"
-        aria-label={menuOpen ? "Menü schließen" : "Menü öffnen"}
+        aria-label={menuOpen ? 'Menü schließen' : 'Menü öffnen'}
         onClick={() => setMenuOpen(!menuOpen)}
       >
-        <span>{menuOpen ? "Schließen" : "Menü"}</span>
+        <span>{menuOpen ? 'Schließen' : 'Menü'}</span>
         <span className={styles.menuIcon} aria-hidden="true">
           <i />
           <i />
@@ -52,13 +51,13 @@ export const Header = () => {
 
       <nav
         id="main-navigation"
-        className={`${styles.nav} ${menuOpen ? styles.navOpen : ""}`}
+        className={`${styles.nav} ${menuOpen ? styles.navOpen : ''}`}
         aria-label="Hauptnavigation"
       >
         {navItems.map((item) => (
           <a
             key={item.href}
-            aria-current={currentPath === item.href ? "page" : undefined}
+            aria-current={currentPath === item.href ? 'page' : undefined}
             href={item.href}
             onClick={() => setMenuOpen(false)}
           >
@@ -66,8 +65,6 @@ export const Header = () => {
           </a>
         ))}
       </nav>
-
-
     </header>
   );
 };

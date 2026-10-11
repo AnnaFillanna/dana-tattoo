@@ -7,14 +7,17 @@
     "dev": "vite",
     "build": "tsc -b && vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr && node scripts/prerender.mjs",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "format": "prettier --write \"src/**/*.{ts,tsx,scss}\" \"scripts/**/*.mjs\" \"tests/**/*.mjs\" \"*.{json,js,ts}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,scss}\" \"scripts/**/*.mjs\" \"tests/**/*.mjs\" \"*.{json,js,ts}\"",
+    "test": "node tests/gallery-storage.test.mjs && node tests/admin-access.test.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.117.2",
     "lucide-react": "^1.54.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
-    "react-router-dom": "^6.30.6"
+    "react-router-dom": "^7.18.4"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -26,6 +29,7 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.6",
     "globals": "^17.12.0",
+    "prettier": "^3.9.10",
     "sass-embedded": "^1.105.0",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.69.0",

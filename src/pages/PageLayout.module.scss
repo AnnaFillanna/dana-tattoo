@@ -11,8 +11,14 @@
   min-height: 44px;
   font-size: 11px;
   letter-spacing: 0.04em;
-  &:hover { text-decoration: underline; text-underline-offset: 5px; }
-  &:focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }
+  &:hover {
+    text-decoration: underline;
+    text-underline-offset: 5px;
+  }
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 5px;
+  }
 }
 
 .heading {
@@ -36,9 +42,16 @@
   }
 }
 
-.content { padding-top: 40px; }
-.placeholder { font-size: 14px; line-height: 1.7; }
+.content {
+  padding-top: 40px;
+}
+.placeholder {
+  font-size: 14px;
+  line-height: 1.7;
+}
 
 @media (max-width: 1100px) {
-  .page { min-height: calc(100svh - 80px); }
+  .page {
+    min-height: calc(100svh - 80px);
+  }
 }

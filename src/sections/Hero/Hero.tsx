@@ -23,7 +23,11 @@ export const Hero = () => {
       <video
         ref={videoRef}
         className={styles.background}
-        muted loop playsInline preload="metadata" aria-hidden="true"
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        aria-hidden="true"
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
       >
@@ -31,16 +35,22 @@ export const Hero = () => {
       </video>
       <div className={styles.overlay} aria-hidden="true" />
 
-      <div className={styles.reviewBadge}><GoogleReviewBadge /></div>
+      <div className={styles.reviewBadge}>
+        <GoogleReviewBadge />
+      </div>
 
       <div className={styles.content}>
         <p className={styles.eyebrow}>Dana Tattoo Studio</p>
         <h1 id="hero-title" className={styles.heroTitle}>
-          Kunst auf{' '}<br /><span className={styles.heroAccent}>deiner</span> Haut.
+          Kunst auf <br />
+          <span className={styles.heroAccent}>deiner</span> Haut.
         </h1>
-        <div className={styles.divider} aria-hidden="true"><span>✦</span></div>
+        <div className={styles.divider} aria-hidden="true">
+          <span>✦</span>
+        </div>
         <p className={styles.description}>
-          Individuelle Tattoos mit Bedeutung,{' '}<br />Präzision und Leidenschaft.
+          Individuelle Tattoos mit Bedeutung, <br />
+          Präzision und Leidenschaft.
         </p>
         <div className={styles.actions}>
           <a className={styles.button} href="/kontakt">

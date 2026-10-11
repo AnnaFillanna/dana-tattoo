@@ -1,14 +1,11 @@
-import { useEffect, useState } from "react";
-import styles from "./CookieConsent.module.scss";
-import { Cookie } from "lucide-react";
+import { useEffect, useRef, useState } from 'react';
+import styles from './CookieConsent.module.scss';
+import { Cookie } from 'lucide-react';
 
-import {
-  readCookieChoice,
-  saveCookieChoice,
-  type CookieChoice,
-} from "../../lib/cookieConsent";
+import { readCookieChoice, saveCookieChoice, type CookieChoice } from '../../lib/cookieConsent';
 
 export function CookieConsent() {
+  const dialog = useRef<HTMLDialogElement>(null);
   const [showSettings, setShowSettings] = useState(false);
   const [isBannerOpen, setIsBannerOpen] = useState(false);
   const [mapsEnabled, setMapsEnabled] = useState(false);
@@ -19,27 +16,42 @@ export function CookieConsent() {
     void Promise.resolve().then(() => {
       if (!active) return;
       const saved = readCookieChoice();
-      setMapsEnabled(saved === "accepted");
-      setIsBannerOpen(saved !== "accepted" && saved !== "rejected");
+      setMapsEnabled(saved === 'accepted');
+      setIsBannerOpen(saved !== 'accepted' && saved !== 'rejected');
     });
     return () => {
       active = false;
     };
   }, []);
 
+  useEffect(() => {
+    const element = dialog.current;
+    if (!element) return;
+    if (isBannerOpen && !element.open) element.showModal();
+    else if (!isBannerOpen && element.open) element.close();
+    if (!isBannerOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isBannerOpen]);
+
   function saveChoice(value: CookieChoice) {
     saveCookieChoice(value);
-    setMapsEnabled(value === "accepted");
+    setMapsEnabled(value === 'accepted');
     setShowSettings(false);
     setIsBannerOpen(false);
   }
 
-  if (!isBannerOpen) {
-    return (
+  return (
+    <>
       <button
         type="button"
+        hidden={isBannerOpen}
         className={styles.cookieIcon}
         onClick={() => {
+          setMapsEnabled(readCookieChoice() === 'accepted');
           setIsBannerOpen(true);
           setShowSettings(false);
         }}
@@ -48,101 +60,94 @@ export function CookieConsent() {
       >
         <Cookie size={25} strokeWidth={1.5} color="#c9aa72" />
       </button>
-    );
-  }
-
-  return (
-    <div className={styles.overlay}>
-      <section
-        className={`${styles.banner} ${
-          showSettings ? styles.bannerExpanded : ""
-        }`}
-        role="dialog"
+      <dialog
+        ref={dialog}
+        className={styles.overlay}
         aria-label="Cookie-Einstellungen"
+        onClose={() => {
+          setIsBannerOpen(false);
+          setShowSettings(false);
+        }}
       >
-        <button
-          type="button"
-          className={styles.closeButton}
-          onClick={() => {
-            setIsBannerOpen(false);
-            setShowSettings(false);
-          }}
-          aria-label="Cookie-Banner schließen"
-        >
-          ×
-        </button>
-        <h2>Deine Privatsphäre ist uns wichtig</h2>
-
-        <p>
-          Wir verwenden notwendige Technologien für den Betrieb unserer Website.
-          Mit deiner Einwilligung können wir außerdem externe Inhalte wie Google
-          Maps anzeigen.
-        </p>
-
-        <p>Du kannst deine Entscheidung jederzeit ändern.</p>
-        <p className={styles.privacyLink}>
-          Weitere Informationen findest du in unserer{" "}
-          <a href="/datenschutz">Datenschutzerklärung</a>.
-        </p>
-        <div className={styles.buttons}>
-          <button type="button" onClick={() => saveChoice("accepted")}>
-            Alle akzeptieren
+        <section className={`${styles.banner} ${showSettings ? styles.bannerExpanded : ''}`}>
+          <button
+            type="button"
+            className={styles.closeButton}
+            onClick={() => {
+              setIsBannerOpen(false);
+              setShowSettings(false);
+            }}
+            aria-label="Cookie-Banner schließen"
+          >
+            ×
           </button>
+          <h2>Deine Privatsphäre ist uns wichtig</h2>
 
-          <button type="button" onClick={() => saveChoice("rejected")}>
-            Alle ablehnen
-          </button>
+          <p>
+            Wir verwenden notwendige Technologien für den Betrieb unserer Website. Mit deiner
+            Einwilligung können wir außerdem externe Inhalte wie Google Maps anzeigen.
+          </p>
 
-          <button type="button" onClick={() => setShowSettings(!showSettings)}>
-            Einstellungen
-          </button>
-        </div>
+          <p>Du kannst deine Entscheidung jederzeit ändern.</p>
+          <p className={styles.privacyLink}>
+            Weitere Informationen findest du in unserer{' '}
+            <a href="/datenschutz">Datenschutzerklärung</a>.
+          </p>
+          <div className={styles.buttons}>
+            <button type="button" onClick={() => saveChoice('accepted')}>
+              Alle akzeptieren
+            </button>
 
-        {showSettings && (
-          <div className={styles.settings}>
-            <h3>Cookie-Einstellungen</h3>
+            <button type="button" onClick={() => saveChoice('rejected')}>
+              Alle ablehnen
+            </button>
 
-            <div className={styles.settingRow}>
-              <div>
-                <strong>Notwendige Technologien</strong>
-                <p>Für den Betrieb der Website erforderlich.</p>
-              </div>
-
-              <input
-                type="checkbox"
-                checked
-                disabled
-                aria-label="Notwendige Technologien"
-              />
-            </div>
-
-            <div className={styles.settingRow}>
-              <div>
-                <strong>Google Maps</strong>
-                <p>
-                  Ermöglicht die Anzeige der interaktiven Karte. Dabei können
-                  Daten an Google übertragen werden.
-                </p>
-              </div>
-
-              <input
-                type="checkbox"
-                checked={mapsEnabled}
-                onChange={(event) => setMapsEnabled(event.target.checked)}
-                aria-label="Google Maps erlauben"
-              />
-            </div>
-
-            <button
-              type="button"
-              className={styles.saveButton}
-              onClick={() => saveChoice(mapsEnabled ? "accepted" : "rejected")}
-            >
-              Auswahl speichern
+            <button type="button" onClick={() => setShowSettings(!showSettings)}>
+              Einstellungen
             </button>
           </div>
-        )}
-      </section>
-    </div>
+
+          {showSettings && (
+            <div className={styles.settings}>
+              <h3>Cookie-Einstellungen</h3>
+
+              <div className={styles.settingRow}>
+                <div>
+                  <strong>Notwendige Technologien</strong>
+                  <p>Für den Betrieb der Website erforderlich.</p>
+                </div>
+
+                <input type="checkbox" checked disabled aria-label="Notwendige Technologien" />
+              </div>
+
+              <div className={styles.settingRow}>
+                <div>
+                  <strong>Google Maps</strong>
+                  <p>
+                    Ermöglicht die Anzeige der interaktiven Karte. Dabei können Daten an Google
+                    übertragen werden.
+                  </p>
+                </div>
+
+                <input
+                  type="checkbox"
+                  checked={mapsEnabled}
+                  onChange={(event) => setMapsEnabled(event.target.checked)}
+                  aria-label="Google Maps erlauben"
+                />
+              </div>
+
+              <button
+                type="button"
+                className={styles.saveButton}
+                onClick={() => saveChoice(mapsEnabled ? 'accepted' : 'rejected')}
+              >
+                Auswahl speichern
+              </button>
+            </div>
+          )}
+        </section>
+      </dialog>
+    </>
   );
 }

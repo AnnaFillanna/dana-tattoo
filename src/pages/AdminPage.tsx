@@ -1,5 +1,6 @@
 import { useEffect, useState, type FormEvent } from 'react';
 import type { Session, SupabaseClient } from '@supabase/supabase-js';
+import { isGalleryAdmin } from '../lib/adminAccess';
 import { getSupabase } from '../lib/supabase';
 import { GalleryManager } from '../components/GalleryManager';
 import styles from './AdminPage.module.scss';
@@ -40,7 +41,8 @@ export const AdminPage = () => {
         unsubscribe = () => data.subscription.unsubscribe();
         const result = await supabase.auth.getSession();
         if (!active || authChanged) return;
-        if (result.error) setError('Deine Sitzung konnte nicht geladen werden. Bitte melde dich erneut an.');
+        if (result.error)
+          setError('Deine Sitzung konnte nicht geladen werden. Bitte melde dich erneut an.');
         setSession(result.error ? null : result.data.session);
         setLoading(false);
       } catch {
@@ -49,7 +51,10 @@ export const AdminPage = () => {
         setLoading(false);
       }
     });
-    return () => { active = false; unsubscribe?.(); };
+    return () => {
+      active = false;
+      unsubscribe?.();
+    };
   }, []);
 
   const login = async (event: FormEvent<HTMLFormElement>) => {
@@ -58,17 +63,29 @@ export const AdminPage = () => {
     setBusy(true);
     setError('');
     try {
-      const { error: loginError } = await client.auth.signInWithPassword({ email: email.trim(), password });
+      const { error: loginError } = await client.auth.signInWithPassword({
+        email: email.trim(),
+        password,
+      });
       if (loginError) {
-        setError(loginError.code === 'invalid_credentials'
-          ? 'E-Mail oder Passwort ist falsch. Prüfe deine E-Mail und zeige das Passwort zur Kontrolle an. Verwende die Zugangsdaten für die Website-Verwaltung.'
-          : loginError.status === 429
-            ? 'Zu viele Anmeldeversuche. Bitte versuche es in einigen Minuten erneut.'
-            : 'Die Anmeldung ist derzeit nicht möglich. Bitte prüfe deine Verbindung und versuche es erneut.');
-      } else { setPassword(''); setShowPassword(false); }
+        setError(
+          loginError.code === 'invalid_credentials'
+            ? 'E-Mail oder Passwort ist falsch. Prüfe deine E-Mail und zeige das Passwort zur Kontrolle an. Verwende die Zugangsdaten für die Website-Verwaltung.'
+            : loginError.status === 429
+              ? 'Zu viele Anmeldeversuche. Bitte versuche es in einigen Minuten erneut.'
+              : 'Die Anmeldung ist derzeit nicht möglich. Bitte prüfe deine Verbindung und versuche es erneut.',
+        );
+      } else {
+        setPassword('');
+        setShowPassword(false);
+      }
     } catch {
-      setError('Die Anmeldung ist derzeit nicht möglich. Bitte prüfe deine Verbindung und versuche es erneut.');
-    } finally { setBusy(false); }
+      setError(
+        'Die Anmeldung ist derzeit nicht möglich. Bitte prüfe deine Verbindung und versuche es erneut.',
+      );
+    } finally {
+      setBusy(false);
+    }
   };
 
   const logout = async () => {
@@ -78,34 +95,97 @@ export const AdminPage = () => {
     try {
       const { error: logoutError } = await client.auth.signOut();
       if (logoutError) setError('Abmelden war nicht möglich. Bitte versuche es erneut.');
-      else { setSession(null); setEmail(''); }
-    } catch { setError('Abmelden war nicht möglich. Bitte prüfe deine Verbindung.'); }
-    finally { setBusy(false); }
+      else {
+        setSession(null);
+        setEmail('');
+      }
+    } catch {
+      setError('Abmelden war nicht möglich. Bitte prüfe deine Verbindung.');
+    } finally {
+      setBusy(false);
+    }
   };
 
   return (
     <main className={styles.page}>
-      <section className={`${styles.panel} ${session ? styles.authenticated : ''}`} aria-labelledby="admin-title" aria-busy={loading || busy}>
+      <section
+        className={`${styles.panel} ${session ? styles.authenticated : ''}`}
+        aria-labelledby="admin-title"
+        aria-busy={loading || busy}
+      >
         <p className={styles.eyebrow}>Dana Tattoo Studio</p>
         <h1 id="admin-title">{session ? 'Dana Tattoo Studio – Verwaltung' : 'Verwaltung'}</h1>
-        {loading ? <p role="status">Sitzung wird geprüft …</p> : configurationError ? (
-          <p role="alert">Die Verwaltung ist noch nicht eingerichtet. Bitte hinterlege die Supabase-Konfiguration und starte die Website erneut.</p>
+        {loading ? (
+          <p role="status">Sitzung wird geprüft …</p>
+        ) : configurationError ? (
+          <p role="alert">
+            Die Verwaltung ist noch nicht eingerichtet. Bitte hinterlege die Supabase-Konfiguration
+            und starte die Website erneut.
+          </p>
         ) : session ? (
-          <><button type="button" disabled={busy} onClick={() => void logout()}>{busy ? 'Abmelden …' : 'Abmelden'}</button>
-          {client && <GalleryManager key={session.user.id} client={client} />}</>
+          <>
+            <button type="button" disabled={busy} onClick={() => void logout()}>
+              {busy ? 'Abmelden …' : 'Abmelden'}
+            </button>
+            {isGalleryAdmin(session.user.id) && client ? (
+              <GalleryManager key={session.user.id} client={client} />
+            ) : (
+              <p role="alert">Dieses Konto hat keinen Zugriff auf die Galerie-Verwaltung.</p>
+            )}
+          </>
         ) : (
-          <form onSubmit={event => void login(event)}>
+          <form onSubmit={(event) => void login(event)}>
             <label htmlFor="admin-email">E-Mail</label>
-            <input id="admin-email" name="email" type="email" inputMode="email" autoCapitalize="none" autoCorrect="off" spellCheck={false} enterKeyHint="next" autoComplete="username" required value={email} onChange={event => setEmail(event.target.value)} disabled={busy} />
+            <input
+              id="admin-email"
+              name="email"
+              type="email"
+              inputMode="email"
+              autoCapitalize="none"
+              autoCorrect="off"
+              spellCheck={false}
+              enterKeyHint="next"
+              autoComplete="username"
+              required
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              disabled={busy}
+            />
             <label htmlFor="admin-password">Passwort</label>
-            <input id="admin-password" name="password" type={showPassword ? 'text' : 'password'} autoComplete="current-password" autoCapitalize="none" autoCorrect="off" spellCheck={false} enterKeyHint="go" required value={password} onChange={event => setPassword(event.target.value)} disabled={busy} />
-            <button className={styles.passwordToggle} type="button" aria-controls="admin-password" aria-pressed={showPassword} disabled={busy} onClick={() => setShowPassword(value => !value)}>
+            <input
+              id="admin-password"
+              name="password"
+              type={showPassword ? 'text' : 'password'}
+              autoComplete="current-password"
+              autoCapitalize="none"
+              autoCorrect="off"
+              spellCheck={false}
+              enterKeyHint="go"
+              required
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+              disabled={busy}
+            />
+            <button
+              className={styles.passwordToggle}
+              type="button"
+              aria-controls="admin-password"
+              aria-pressed={showPassword}
+              disabled={busy}
+              onClick={() => setShowPassword((value) => !value)}
+            >
               {showPassword ? 'Passwort verbergen' : 'Passwort anzeigen'}
             </button>
-            <button type="submit" disabled={busy}>{busy ? 'Anmelden …' : 'Anmelden'}</button>
+            <button type="submit" disabled={busy}>
+              {busy ? 'Anmelden …' : 'Anmelden'}
+            </button>
           </form>
         )}
-        {error && <p className={styles.error} role="alert">{error}</p>}
+        {error && (
+          <p className={styles.error} role="alert">
+            {error}
+          </p>
+        )}
       </section>
     </main>
   );

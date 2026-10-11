@@ -16,22 +16,38 @@ export const Footer = () => (
     <div className={styles.invitation}>
       <div className={styles.intro}>
         <p className={styles.eyebrow}>Dein Tattoo beginnt mit einer Idee</p>
-        <h2>Deine Idee.{' '}<br />Unsere Kunst.{' '}<br /><span>Für immer.</span></h2>
+        <h2>
+          Deine Idee. <br />
+          Unsere Kunst. <br />
+          <span>Für immer.</span>
+        </h2>
         <p className={styles.description}>
-          Du hast schon ein Motiv im Kopf oder suchst noch Inspiration?
-          Lass uns gemeinsam herausfinden, was zu dir passt.
+          Du hast schon ein Motiv im Kopf oder suchst noch Inspiration? Lass uns gemeinsam
+          herausfinden, was zu dir passt.
         </p>
       </div>
 
       <section className={styles.contactPanel} aria-labelledby="footer-contact-title">
         <div className={styles.panelHeading}>
           <span className={styles.eyebrow}>Kontakt & Beratung</span>
-          <h3 id="footer-contact-title">Erzähl uns{' '}<br />von deiner Idee.</h3>
+          <h3 id="footer-contact-title">
+            Erzähl uns <br />
+            von deiner Idee.
+          </h3>
           <p>Schreib Dana direkt per WhatsApp für eine persönliche Beratung zu deinem Tattoo.</p>
         </div>
 
-        <a className={styles.whatsappButton} href={whatsappUrl} target="_blank" rel="noopener noreferrer">Anfrage per WhatsApp</a>
-        <p className={styles.hint}>Deine Idee, die Körperstelle und die ungefähre Größe helfen uns bei der Beratung.</p>
+        <a
+          className={styles.whatsappButton}
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Anfrage per WhatsApp
+        </a>
+        <p className={styles.hint}>
+          Deine Idee, die Körperstelle und die ungefähre Größe helfen uns bei der Beratung.
+        </p>
       </section>
     </div>
 
@@ -42,11 +58,18 @@ export const Footer = () => (
       <nav className={styles.navigation} aria-label="Navigation im Footer">
         <p className={styles.eyebrow}>Das Studio</p>
         <div className={styles.links}>
-          {links.map(({ label, href }) => <a key={href} href={href}>{label}</a>)}
+          {links.map(({ label, href }) => (
+            <a key={href} href={href}>
+              {label}
+            </a>
+          ))}
         </div>
       </nav>
       <div className={styles.signature}>
-        <p>Tattoo Studio{' '}<br /><span>Andernach</span></p>
+        <p>
+          Tattoo Studio <br />
+          <span>Andernach</span>
+        </p>
         <span className={styles.motto}>Individuell. Persönlich. Zeitlos.</span>
       </div>
     </div>
@@ -57,7 +80,9 @@ export const Footer = () => (
         <a href="/impressum">Impressum</a>
         <a href="/datenschutz">Datenschutz</a>
       </nav>
-      <a className={styles.toTop} href="#root">Nach oben</a>
+      <a className={styles.toTop} href="#root">
+        Nach oben
+      </a>
     </div>
   </footer>
 );

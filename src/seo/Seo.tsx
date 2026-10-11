@@ -8,7 +8,7 @@ export function Seo() {
   useEffect(() => {
     const data = metadata(pathname);
     document.title = data.title;
-    document.head.querySelectorAll('[data-seo]').forEach(node => node.remove());
+    document.head.querySelectorAll('[data-seo]').forEach((node) => node.remove());
     for (const [attribute, key, value] of data.tags) {
       const tag = document.createElement('meta');
       tag.setAttribute(attribute, key);
