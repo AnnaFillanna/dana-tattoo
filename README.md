@@ -41,8 +41,7 @@ Schriftarten:
 Dana Tattoo StudioAndernach, Deutschland
 
 📌 Projektstatus
-Das Projekt befindet sich aktuell in der Entwicklung.
-Weitere Inhalte, Studiofotos und finale Details werden schrittweise integriert.
+Fertig!
 
 👩‍💻 Entwicklung
 Konzipiert und entwickelt von Anna Filippi.
