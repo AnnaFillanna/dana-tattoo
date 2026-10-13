@@ -124,7 +124,7 @@ export function GalleryManager({ client }: { client: SupabaseClient }) {
           ref={input}
           id="photo-file"
           type="file"
-          accept="image/jpeg,image/png,image/webp,video/mp4"
+          accept="image/jpeg,image/png,image/webp,video/mp4,video/quicktime,.mov,.mp4"
           required
           disabled={busy}
           onChange={(event) => {
@@ -140,9 +140,9 @@ export function GalleryManager({ client }: { client: SupabaseClient }) {
             }
           }}
         />
-        <p>JPG, PNG, WebP oder MP4 · maximal 50 MB pro Datei.</p>
+        <p>JPG, PNG, WebP, MP4 oder MOV · maximal 50 MB pro Datei.</p>
         {preview &&
-          (file?.type === 'video/mp4' ? (
+          (file?.type.startsWith('video/') ? (
             <video
               className={styles.preview}
               src={preview}

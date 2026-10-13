@@ -35,6 +35,7 @@ try {
                       { id: 'last', name: 'last.webp' },
                       { id: null, name: 'folder' },
                       { id: 'video', name: 'clip.mp4' },
+                      { id: 'mov', name: 'iphone.MOV' },
                     ]
                 : [],
               error: null,
@@ -55,9 +56,10 @@ try {
     },
   };
   const photos = await listGalleryPhotos(client);
-  assert.equal(photos.length, 102);
+  assert.equal(photos.length, 103);
   assert(photos.every((photo) => photo.category === 'grafik'));
   assert(calls.some(([folder, offset]) => folder === 'portfolio/grafik' && offset === 100));
+  assert.equal(photos.find((photo) => photo.id.endsWith('iphone.MOV')).kind, 'video');
   const file = { type: 'image/png', size: 100 };
   await uploadGalleryPhoto(client, file, 'grafik');
   assert.match(uploaded.path, /^portfolio\/grafik\/\d+-[\w-]+\.png$/);
@@ -68,9 +70,10 @@ try {
   await uploadGalleryPhoto(client, { type: 'video/mp4', size: 100 }, 'grafik');
   assert.match(uploaded.path, /\.mp4$/);
   assert.equal(uploaded.options.contentType, 'video/mp4');
-  await assert.rejects(
-    uploadGalleryPhoto(client, { type: 'video/quicktime', size: 100 }, 'grafik'),
-  );
+  await uploadGalleryPhoto(client, { type: 'video/quicktime', size: 100 }, 'grafik');
+  assert.match(uploaded.path, /\.mov$/);
+  assert.equal(uploaded.options.contentType, 'video/quicktime');
+  assert.match(validatePhoto({ type: 'video/quicktime', size: MAX_PHOTO_SIZE + 1 }), /50 MB/);
   await deleteGalleryPhoto(
     client,
     photos.find((photo) => photo.kind === 'video'),

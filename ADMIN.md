@@ -33,10 +33,10 @@ Logout, erneuter direkter Aufruf von `/admin`, abgelaufene Session und Netzwerka
 ## Fotos und Videos verwalten
 
 `/admin` bietet nach dem Login Kategorieauswahl, Datei-Upload mit Vorschau
-(JPG/PNG/WebP und MP4 bis 50 MB), eine Medienliste und Löschen mit Bestätigung.
+(JPG/PNG/WebP sowie MP4/MOV bis 50 MB), eine Medienliste und Löschen mit Bestätigung.
 Dateien werden ausschließlich unter `gallery/portfolio/<kategorie>/` gespeichert.
 Die öffentliche Galerie lädt diese Medien direkt aus Storage. Bestehende Fotos
-außerhalb dieses Verzeichnisses bleiben unberührt. MP4-Videos erscheinen mit Wiedergabesteuerung in der vergrößerten Galerieansicht. Sie sind standardmäßig stumm und werden beim Schließen der Ansicht entfernt, damit die Wiedergabe endet.
+außerhalb dieses Verzeichnisses bleiben unberührt. MP4-/MOV-Videos erscheinen mit Wiedergabesteuerung in der vergrößerten Galerieansicht. Sie sind standardmäßig stumm und werden beim Schließen der Ansicht entfernt, damit die Wiedergabe endet.
 
 Die öffentliche SELECT-Policy wurde im bestehenden Supabase-Projekt eingerichtet.
 Für eine neue Umgebung liegt dieselbe Policy in `supabase/gallery-public-read.sql`. Das erlaubt ausschließlich
@@ -51,3 +51,8 @@ Prüfung: anmelden, ein eigenes Testfoto hochladen, Kategorie in `/gallery`
 in einem ausgeloggten Browser prüfen, Admin aktualisieren, Löschdialog abbrechen,
 dann Testfoto bestätigen und löschen. Anschließend abmelden.
 Automatisierte lokale Storage-Tests: `node tests/gallery-storage.test.mjs`.
+
+HEVC ist ein Codec in MOV- oder MP4-Dateien. Der Upload konvertiert Videos nicht.
+Die Wiedergabe hängt von der Codec-Unterstützung des Browsers ab.
+Im Bucket `gallery` ist zusätzlich `video/quicktime` erlaubt (13.10.2026);
+`video/mp4` und die vorhandenen Bildformate bleiben erlaubt.
