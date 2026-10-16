@@ -90,6 +90,25 @@ function ValueIcon({ name }: { name: string }) {
 }
 
 export const AboutPage = () => {
+  const hero = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const element = hero.current;
+    const motion = window.matchMedia(
+      '(min-width: 1001px) and (prefers-reduced-motion: no-preference)',
+    );
+    if (!element || !motion.matches || !('IntersectionObserver' in window)) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        element.dataset.entered = 'true';
+        observer.disconnect();
+      },
+      { threshold: 0.15 },
+    );
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+
   const carousel = useRef<HTMLUListElement>(null);
   const [paused, setPaused] = useState(false);
   useEffect(() => {
@@ -152,7 +171,7 @@ export const AboutPage = () => {
   return (
     <main className={styles.page}>
       <div className={styles.container}>
-        <header className={styles.hero}>
+        <header ref={hero} className={styles.hero}>
           <figure className={styles.portrait}>
             <img
               src={portrait}
