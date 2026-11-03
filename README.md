@@ -4,6 +4,13 @@ Eine moderne und responsive Website für das **Dana Tattoo Studio** in Andernach
 
 🌐 **Live Website:** [tattoodana.de](https://tattoodana.de)
 
+<p align="center">
+  <img src="docs/screenshots/desktop.png" alt="Dana Tattoo Studio – Desktop-Ansicht" width="900" />
+</p>
+<p align="center">
+  <img src="docs/screenshots/mobile.png" alt="Dana Tattoo Studio – mobile Ansicht" width="260" />
+</p>
+
 Die Website wurde als reales Kundenprojekt konzipiert und entwickelt. Im Mittelpunkt stehen eine individuelle visuelle Gestaltung, eine übersichtliche Navigation und eine moderne Präsentation der Arbeiten und Leistungen des Studios.
 
 ✨ Funktionen
