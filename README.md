@@ -1,63 +1,56 @@
- # Dana Tattoo Studio
+# Dana Tattoo Studio
 
-Eine moderne und responsive Website für das **Dana Tattoo Studio** in Andernach.
+Moderne und responsive Website für das **Dana Tattoo Studio** in Andernach.
 
 🌐 **Live Website:** [tattoodana.de](https://tattoodana.de)
 
 <p align="center">
-  <img src="docs/screenshots/desktop.png" alt="Dana Tattoo Studio – Desktop-Ansicht" width="900" />
+  <img src="docs/screenshots/desktop.png" alt="Dana Tattoo Studio – Desktop-Ansicht" width="72%" />
+  &nbsp;
+  <img src="docs/screenshots/mobile.png" alt="Dana Tattoo Studio – mobile Ansicht" width="23%" />
 </p>
-<p align="center">
-  <img src="docs/screenshots/mobile.png" alt="Dana Tattoo Studio – mobile Ansicht" width="260" />
-</p>
 
-Die Website wurde als reales Kundenprojekt konzipiert und entwickelt. Im Mittelpunkt stehen eine individuelle visuelle Gestaltung, eine übersichtliche Navigation und eine moderne Präsentation der Arbeiten und Leistungen des Studios.
+## Über das Projekt
 
-✨ Funktionen
-	●	Responsive Design für Desktop, Tablet und Smartphone
-	●	Mehrseitige Navigation mit React Router
-	●	Übersicht der Tattoo-Stile und Leistungen
-	●	Tattoo-Galerie
-	●	„Über mich“-Seite
-	●	Preisübersicht
-	●	FAQ-Bereich
-	●	Kontaktbereich
-	●	WhatsApp-Integration für Beratung und Terminanfragen
-	●	Tattoo- und Piercing-Angebot
-	●	Individuelles Design passend zur Identität des Studios
-🛠 Tech Stack
-	●	React
-	●	TypeScript
-	●	Vite
-	●	SCSS / SCSS Modules
-	●	React Router
-	●	ESLint
-	●	Prettier
-	●	Husky
-	●	lint-staged
-	●	Commitlint
-🎨 Design
-Das Design kombiniert dunkle Grüntöne mit warmen goldenen Akzenten und eleganter Typografie.
-Ziel war es, eine hochwertige und individuelle Atmosphäre zu schaffen, die zum Charakter des Tattoo-Studios passt.
-Schriftarten:
-	●	Cormorant Garamond
-	●	Montserrat
+Reales Kundenprojekt. Die Website präsentiert die Arbeiten und Leistungen des Studios und erleichtert Interessenten den Weg zur Terminanfrage über WhatsApp.
 
+**Meine Rolle:** Konzeption, Design und vollständige Entwicklung.
 
-📍 Studio
-Dana Tattoo StudioAndernach, Deutschland
+## Funktionen
 
-📌 Projektstatus
-Fertig!
+- Responsive Design für Desktop, Tablet und Smartphone
+- Mehrseitige Navigation mit React Router
+- Tattoo- und Piercing-Galerie
+- Übersicht der Leistungen und Preise
+- „Über mich“-Seite
+- FAQ-Bereich
+- Kontaktbereich mit WhatsApp-Integration
+- Individuelles Design passend zur Studio-Identität
 
-👩‍💻 Entwicklung
-Konzipiert und entwickelt von Anna Filippi.
-Umgesetzt mit React und TypeScript als reales Kundenprojekt.
+## Tech Stack
+
+- **Frontend:** React, TypeScript, Vite
+- **Styling:** SCSS Modules
+- **Routing:** React Router
+- **Backend / Daten:** Supabase
+- **Code Quality:** ESLint, Prettier, Husky, lint-staged, Commitlint
+- **CI:** GitHub Actions
+- TypeScript im Strict-Modus
+
 ## Codequalität
 
-Einheitliche Formatierung: `npm run format`. Vor einem Commit:
-`npm run format:check`, `npm run lint`, `npm test`, `npm run build`.
-GitHub Actions führt diese Prüfungen bei Pushes und Pull Requests aus.
-TypeScript läuft im Strict-Modus. Sicherheitsupdates kontrolliert mit
-`npm audit` prüfen. Zugangsdaten gehören ausschließlich in lokale bzw.
-Hosting-Umgebungsvariablen, nicht in das Repository.
+- Einheitliche Formatierung mit Prettier
+- Automatische Checks vor jedem Commit (Format, Lint, Test, Build)
+- GitHub Actions bei Pushes und Pull Requests
+- Keine Zugangsdaten im Repository – nur über Environment Variables
+
+## Design
+
+Dunkle Grüntöne kombiniert mit warmen goldenen Akzenten und eleganter Typografie.  
+Ziel war eine hochwertige Atmosphäre, die zum Charakter des Tattoo-Studios passt.
+
+**Schriftarten:** Cormorant Garamond + Montserrat
+
+## Status
+
+Fertig und veröffentlicht.
